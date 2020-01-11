@@ -1,0 +1,27 @@
+<div style=" display: flex; justify-content: space-around; margin-top: 50px;">
+    <div>
+        <div class="product-info">				
+            <h1>{{productService.titre}}</h1>
+            <br>
+            <h2>Story :</h2>
+            <p  style="margin-top: -20px;">{{productService.story}}</p >
+
+            <div style="display: flex; justify-content: space-around;">
+                <div>            
+                    <h3 class="share">Share This</h3>
+                    <a href="" alt="facebook" class="share"><i class="fa fa-facebook"></i></a>
+                    <a href="" alt="twitter" class="share"><i class="fa fa-twitter"></i></a>
+                    <a href="" alt="Pinterest" class="share"><i class="fa fa-pinterest-p"></i></a>
+                </div>
+                <div>
+                    <button (click)="Donate()" class="button">Donate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div >
+        <div class="col-1-1 product-img" *ngFor="let item of productService.compaignImages; let myIndex = index">
+            <img class="bg" src="{{productService.compaignImages[myIndex]}}" alt="">
+        </div>
+    </div>
+</div>

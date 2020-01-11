@@ -1,0 +1,82 @@
+<div class="body">
+    <div class='container'>
+        <div class='background-element' id='background-element'>
+        </div>
+        <div style="margin-top: 60px;" class='highlight-window' id='product-img'>
+              <div class=" container slider">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="10000">
+                  
+                  <ol class="carousel-indicators">
+                    <li style="height: 4px; background-color: #365960;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active" ></li>
+                    <div *ngFor="let item of productService.images | slice:1; let myIndex = index">
+                      <li style="height: 4px; background-color: #365960;" data-target="#carouselExampleIndicators" data-slide-to="{{myIndex}}" ></li>
+                    </div>
+                  </ol>
+
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="d-block w-100 imageSize" src="{{productService.images[0]}}" alt="First slide">
+                    </div>
+                    <div class="carousel-item" *ngFor="let item of productService.images | slice:1; let myIndex = index">
+                      <img class="d-block w-100 imageSize" src="{{item}}" alt="">
+                    </div>
+                  </div>
+                  
+                  <a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span style="background-color: #365960;"  class="carousel-control-prev-icon " aria-hidden="true"></span>
+                    <span  class="sr-only">Previous</span >
+                  </a>
+                  <a  class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span style="background-color: #365960;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+
+                </div>
+              </div>
+        </div>
+
+        <div style="margin-top: 60px;" class='window'>
+          <div class='main-content'>
+            <!-- <h2>{{pre_titre}}</h2> -->
+            <h2>{{productService.titre}}</h2>
+            <h3>Ajouté le {{productService.date}}</h3>
+            <div class='description' id='description'>
+                {{productService.description}}
+            </div>
+ 
+            <div class="MoneyProgress" id=countdown-wrap>
+                <div >
+                  <div id="goal">${{productService.budget}}</div>
+                  <div id="glass" ng-model="percent"> 
+                    <div id="progress"></div>
+                  </div>
+                  <div class="goal-stat">
+                    <span class="goal-number">{{100*productService.raised/productService.budget}}%</span>
+                    <span class="goal-label">Funded</span>
+                  </div>
+                  <div class="goal-stat">
+                    <span class="goal-number">${{productService.raised}}</span>
+                    <span class="goal-label">Raised</span>
+                  </div>
+                  <div class="goal-stat">
+                    <span class="goal-number">
+                      <div id="countdown"></div>
+                    </span>
+                    <span class="goal-number"> {{productService.date_limite}}</span>
+                    <span class="goal-label">  Days to Go</span>
+                  </div>
+                </div>
+                <!--http://stackoverflow.com/questions/9335140/how-to-countdown-to-a-date -->
+            </div>
+            
+            <div class='divider'></div>
+      
+            <div class='purchase-info'>
+                <div></div>
+                <button (click)="Donate()" class="button">Donate</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+</div>

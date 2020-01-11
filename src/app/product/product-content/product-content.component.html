@@ -1,0 +1,32 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<div class="wrapper">
+	
+	<header style="position: relative;">
+	</header>
+	
+	<div class="breadcrumb">
+		More Details...
+	</div>
+	
+	<nav >
+		<a (click)="setCompaign()">Compaign</a>
+		<a (click)="setReview()">Reviews</a>
+		<a (click)="setFunders()">Community</a>
+	</nav>
+	
+    <div *ngIf=" activePanel == 'compaign' ">
+		<app-product-compaign></app-product-compaign>
+	</div>
+	<div *ngIf=" activePanel == 'review' ">
+		<app-product-review></app-product-review>
+	</div>
+	<div *ngIf=" activePanel == 'funders' ">
+		<app-product-funders></app-product-funders>
+	</div>
+	
+</div>
