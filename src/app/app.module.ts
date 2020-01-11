@@ -31,6 +31,7 @@ import { ProductContentComponent } from './product/product-content/product-conte
 import { ProductCompaignComponent } from './product/product-content/product-compaign/product-compaign.component';
 import { ProductReviewComponent } from './product/product-content/product-review/product-review.component';
 import { ProductFundersComponent } from './product/product-content/product-funders/product-funders.component';
+import { HttpClientModule } from '@angular/common/http';
 
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     //MatDialog,
     //MatDialogConfig,
     MatDialogModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
     
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

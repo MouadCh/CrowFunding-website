@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IndexService } from '../services/index.service';
+import { ProjetService } from '../services/projet.service';
 
 @Component({
   selector: 'app-mostdonated-slider',
@@ -8,6 +9,8 @@ import { IndexService } from '../services/index.service';
 })
 export class MostdonatedSliderComponent implements OnInit {
 
+  // cards:any[];
+  slides: any = [[]];
     
   cards = [
     {
@@ -70,14 +73,8 @@ export class MostdonatedSliderComponent implements OnInit {
       buttonText: 'Button',
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
     },
-    {
-      title: 'Card Title 11',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
+
   ];
-  slides: any = [[]];
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -87,10 +84,12 @@ export class MostdonatedSliderComponent implements OnInit {
   }
 
 
-  constructor(private indexService:IndexService) { }
+  constructor(private indexService:IndexService, private projetService:ProjetService) { }
 
   ngOnInit() {
-    this.slides = this.chunk(this.cards, 4);
+    this.projetService.getMostDonatedProjects().subscribe( (data:any[]) =>{
+        this.cards = data;
+        this.slides = this.chunk(this.cards, 4);
+      });
   }
-
 }
