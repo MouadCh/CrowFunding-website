@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { NavbarService } from '../service/navbar.service';
 import { IndexService } from '../services/index.service';
 import { Router } from '@angular/router';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { AuthentificationComponent } from '../authentification/authentification.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +14,8 @@ import { Router } from '@angular/router';
 
 
 export class NavbarComponent implements OnInit {
-  constructor(private navBarService:NavbarService, private indexService:IndexService, private router:Router) {
+  constructor(private navBarService:NavbarService, private indexService:IndexService,
+     private router:Router, private dialog: MatDialog) {
    }
 
   ngOnInit() {
@@ -22,6 +25,15 @@ export class NavbarComponent implements OnInit {
     // this.router.dispose();
     this.indexService.activePage="home";
     this.indexService.activeProduct="";
+  }
+
+  auth() {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+
+    this.dialog.open(AuthentificationComponent, dialogConfig);
   }
   
 }

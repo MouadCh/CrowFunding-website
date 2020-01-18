@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjetService {
 
-  mainUrl:String = "http://192.168.1.109:8080/";
+  mainUrl:String = "http://192.168.1.142:8080/";
 
   constructor(private http: HttpClient) { }
 
