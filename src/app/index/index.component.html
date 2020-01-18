@@ -1,15 +1,4 @@
-
-<!-- <body (scroll)="onElementScroll($event)" >
-    <app-navbar></app-navbar>
-    <app-home></app-home>    
-</body> -->
-<!-- <app-inscription></app-inscription> -->
-
-<!-- <router-outlet></router-outlet> -->
-
-<!-- <app-product-header></app-product-header> -->
-
-<body >
+<!-- <body >
     <app-navbar ></app-navbar>
 
     <div *ngIf="indexService.activePage == 'home' ">
@@ -21,7 +10,7 @@
                         <app-header></app-header>
                     </header>
     
-                    <section class="content">
+                    <section  class="content">
                         <app-home></app-home>  
                     </section>
     
@@ -45,4 +34,26 @@
     </div>
 
     <a href="#" class="link-to-portfolio" target=”_blank”></a>
-</body> 
+</body>  -->
+
+<!-- <div *ngIf="indexService.activePage == 'home' "> -->
+    <div id="scroll-animate">
+        <div id="scroll-animate-main">
+            <div class="wrapper-parallax">
+                
+                <header>
+                    <app-header></app-header>
+                </header>
+
+                <section  class="content">
+                    <app-home></app-home>  
+                </section>
+
+                <footer  >
+                    <app-footer></app-footer>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

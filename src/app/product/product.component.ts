@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService : ProductService, private router : Router) {  }
 
   ngOnInit() {
+
+    var txt = this.router.url;
+    var id =  parseInt(txt.match(/\d/g)+"");
+    console.log(id); 
+    this.productService.getProductId(id);
   }
 
 }

@@ -39,30 +39,30 @@
           <div class='main-content'>
             <!-- <h2>{{pre_titre}}</h2> -->
             <h2>{{productService.titre}}</h2>
-            <h3>Ajouté le {{productService.date}}</h3>
+            <h3>Ajouté le {{productService.date | date: 'dd/mm/yyyy'}}</h3>
             <div class='description' id='description'>
                 {{productService.description}}
             </div>
  
             <div class="MoneyProgress" id=countdown-wrap>
                 <div >
-                  <div id="goal">${{productService.budget}}</div>
+                  <div id="goal">${{productService.budget |  number: '1.2-2' }}</div>
                   <div id="glass" ng-model="percent"> 
                     <div id="progress"></div>
                   </div>
                   <div class="goal-stat">
-                    <span class="goal-number">{{100*productService.raised/productService.budget}}%</span>
+                    <span class="goal-number">{{100*productService.raised/productService.budget | number: '1.2-2'}}%</span>
                     <span class="goal-label">Funded</span>
                   </div>
                   <div class="goal-stat">
-                    <span class="goal-number">${{productService.raised}}</span>
+                    <span class="goal-number">${{productService.raised |  number: '1.2-2'}}</span>
                     <span class="goal-label">Raised</span>
                   </div>
                   <div class="goal-stat">
                     <span class="goal-number">
                       <div id="countdown"></div>
                     </span>
-                    <span class="goal-number"> {{productService.date_limite}}</span>
+                    <span class="goal-number"> {{productService.date_limite | date: 'd'}}</span>
                     <span class="goal-label">  Days to Go</span>
                   </div>
                 </div>

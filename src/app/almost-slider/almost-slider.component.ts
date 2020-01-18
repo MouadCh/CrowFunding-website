@@ -94,7 +94,7 @@ export class AlmostSliderComponent implements OnInit {
   ngOnInit() {
     this.projetService.getAlmostTheGoalProjects().subscribe( (data:any[])=>{
       this.cards=data;
-      console.log(this.cards);
+      // console.log(this.cards);
 
       var chunkSize=4;
       var arr=this.cards;

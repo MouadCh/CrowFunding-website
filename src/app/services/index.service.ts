@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RouterLink, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,15 @@ export class IndexService {
   activePage:String="home";
   activeProduct:String="";
 
-  constructor() { }
+  constructor(private router : Router) { }
 
-  ClickOnProduct(title:String){
+  ClickOnProduct(id:any){
     window.scroll(0,0);
-    this.activeProduct=title;
-    this.activePage="product";
+    this.activeProduct=id;
+    window.location.href = "projet/"+id;
+    // this.router.navigateByUrl("projet/"+id);
+    // this.activePage="product";
+    // console.log(title);
   }
 
 }

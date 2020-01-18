@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { IndexService } from 'src/app/services/index.service';
+import { animate } from '@angular/animations';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-product-header',
@@ -22,9 +24,23 @@ export class ProductHeaderComponent implements OnInit {
 
     constructor(private productService : ProductService, private indexService:IndexService) { }
 
+    timeLeft: number = 60;
+    interval;
+
     ngOnInit() {
-        this.productService.titre=this.indexService.activeProduct;
-        document.getElementById("progress").style.width=this.productService.raised*100/this.productService.budget+"%";
+      
+      setTimeout(() => {
+        var currenttime = 0;
+        this.interval = setInterval(() => {
+          if(currenttime <= this.productService.raised*100/this.productService.budget){
+            document.getElementById("progress").style.width=currenttime+"%";   
+            currenttime= currenttime + 1;
+          }else{
+            clearInterval(this.interval);
+          }     
+        },50);
+
+      }, 1500);
     }
 
     Donate(){
