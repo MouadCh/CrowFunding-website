@@ -32,6 +32,7 @@ import { ProductCompaignComponent } from './product/product-content/product-comp
 import { ProductReviewComponent } from './product/product-content/product-review/product-review.component';
 import { ProductFundersComponent } from './product/product-content/product-funders/product-funders.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InscriptionService } from './services/inscription.service';
 
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 
@@ -83,7 +84,7 @@ const appRoutes: Routes = [
     
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [InscriptionService],
   bootstrap: [AppComponent],
   entryComponents: [InscriptionComponent]
 })
