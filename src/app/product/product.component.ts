@@ -13,9 +13,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
 
+    //Get id from url
     var txt = this.router.url;
     var id =  parseInt(txt.match(/\d/g)+"");
     console.log(id); 
+
+    //Get product(id) from BDD 
     this.productService.getProductId(id);
   }
 
