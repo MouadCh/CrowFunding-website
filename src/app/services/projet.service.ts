@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IndexService } from './index.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
 
-  mainUrl:String = "http://192.168.1.142:8080/";
+  mainUrl:String ;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private indexService : IndexService) { 
+    this.mainUrl = this.indexService.mainUrl;
+  }
 
   getAllProjects():Observable<any>{
     return this.http.get(this.mainUrl+"projet");

@@ -5,6 +5,7 @@ import { RouterLink, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class IndexService {
+  mainUrl:String = "http://192.168.1.70:8080/";
 
   activePage:String="home";
   activeProduct:String="";
