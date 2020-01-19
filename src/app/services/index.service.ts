@@ -8,7 +8,7 @@ export class IndexService {
   mainUrl:String = "http://192.168.1.70:8080/";
 
   activePage:String="home";
-  activeProduct:String="";
+  activeProduct:String="d";
 
   constructor(private router : Router) { }
 

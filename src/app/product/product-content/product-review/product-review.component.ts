@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { CommentService } from 'src/app/services/comment.service';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product-review',
@@ -9,17 +11,17 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class ProductReviewComponent implements OnInit {
 
-  commentToAdd:String;
-  email:String;
-  anonymous:String;
+  comment:String="";
+  imgPath:String="https://lh3.googleusercontent.com/-zn5UCGgmIeA/AAAAAAAAAAI/AAAAAAAAAAA/4b1SUl-mHI0/s128-c-k/photo.jpg";
 
-  constructor(private productService : ProductService, private commentService : CommentService) { }
+  constructor(private productService : ProductService, private commentService : CommentService,
+                private authService:AuthService){  }
 
   ngOnInit() {
   }
 
-submitComment(form){
-  console.log("MM",form,this.email,this.anonymous);
-}
+  submitComment(){
+    console.log(this.comment, this.authService.jwt.length);
+  }
 
 }

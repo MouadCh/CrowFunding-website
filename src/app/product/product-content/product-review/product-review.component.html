@@ -1,46 +1,32 @@
-
-<!-- Form -->
-<div class="comment-form">
+<!-- <div *ngIf=" authService.jwt != '' "> -->
+  <!-- Form -->
+  <div class="comment-form">
     <!-- Comment Avatar -->
     <div class="comment-avatar">
-      <img src="http://lorempixel.com/200/200/people">
+      <img [src]="imgPath">
     </div>
 
-    <form class="form" name="form"  ng-submit="form.$valid && cmntCtrl.addComment()" novalidate>
+    <form  (ngSubmit)="submitComment()" class="form" name="form"  ng-submit="form.$valid " novalidate>
       <div class="form-row">
         <textarea
             class="input"
-            ng-model="commentToAdd"
             placeholder="Add comment..."
+            [(ngModel)]="comment"
+            [ngModelOptions]="{standalone: true}"
             required>
         </textarea>
       </div>
 
-      <div class="form-row">
-        <input
-               class="input"
-               ng-class="{ disabled: cmntCtrl.comment.anonymous }"
-               ng-disabled="cmntCtrl.comment.anonymous"
-               ng-model="email"
-               ng-required="!cmntCtrl.comment.anonymous"
-               placeholder="Email"
-               type="email">
-      </div>
-
-      <div class="form-row text-right">
-        <input
-               id="comment-anonymous"
-               ng-change="cmntCtrl.anonymousChanged()"
-               ng-model="anonymous"
-               type="checkbox">
-        <label for="comment-anonymous">Anonymous</label>
-      </div>
-
-      <div class="form-row">
-        <input (click)="submitComment(form)" type="submit" value="Add Comment">
+      <div style="z-index: 30;" class="form-row">
+        <input type="submit"  value="Add Comment">
       </div>
     </form>
-</div>
+  </div>
+<!-- </div>
+
+<div *ngIf="authService.jwt.lenght == 0">
+
+</div> -->
 
 <!-- Contenedor Principal -->
 <div style="margin-bottom: 200px;" class="comments-container">
