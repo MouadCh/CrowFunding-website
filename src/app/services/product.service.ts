@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ProductService {
-  mainUrl:String = "http://192.168.1.142:8080/";
+  mainUrl:String = "http://192.168.1.70:8080/";
 
   currentProjetId:number;
   titre:String;

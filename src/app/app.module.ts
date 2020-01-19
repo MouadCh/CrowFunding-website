@@ -21,7 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { Routes, RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ProfilComponent } from './profil/profil.component';
+
 import { NewProjectSliderComponent } from './new-project-slider/new-project-slider.component';
 import { MostdonatedSliderComponent } from './mostdonated-slider/mostdonated-slider.component';
 import { AlmostSliderComponent } from './almost-slider/almost-slider.component';
@@ -33,13 +33,17 @@ import { ProductReviewComponent } from './product/product-content/product-review
 import { ProductFundersComponent } from './product/product-content/product-funders/product-funders.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InscriptionService } from './services/inscription.service';
+import { ProjetFormComponent } from './projet-form/projet-form.component';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { MyProfilComponent } from './my-profil/my-profil.component';
 
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 
 const appRoutes: Routes = [
   {path:'authentification',component: AuthentificationComponent},
   {path: 'inscription',component: InscriptionComponent},
-  {path: '',component: AuthentificationComponent}
+  {path: '',component: AuthentificationComponent},
+  {path: 'profil',component: MyProfilComponent}
 ];
 @NgModule({
   declarations: [
@@ -51,7 +55,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     AuthentificationComponent,
-    ProfilComponent,
     NewProjectSliderComponent,
     MostdonatedSliderComponent,
     AlmostSliderComponent,
@@ -61,6 +64,9 @@ const appRoutes: Routes = [
     ProductCompaignComponent,
     ProductReviewComponent,
     ProductFundersComponent,
+    ProjetFormComponent,
+    MyProjectsComponent,
+    MyProfilComponent,
     
   ],
   imports: [
