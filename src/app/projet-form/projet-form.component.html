@@ -1,0 +1,46 @@
+<div class="container">
+    <h3>Add new project</h3>
+    <form [formGroup]="formGroup">
+
+        <div class="form-group">
+            <label for="titre">Title</label>
+            <input type="text" class="form-control" id="titre" placeholder="Title" formControlName="titre">
+        </div>
+        <div class="form-group">
+            <label for="description">Project description</label>
+            <input type="text" class="form-control" id="description" placeholder="blablabla..."
+                formControlName="description">
+        </div>
+        <div class="form-group">
+            <label for="story">Story</label>
+            <input type="text" class="form-control" id="story" placeholder="Project story" formControlName="story">
+        </div>
+        <div class="form-group">
+            <label for="budget">Budget</label>
+            <input type="number" class="form-control" id="budget" placeholder="Your budget" formControlName="budget">
+        </div>
+        <div class="form-group">
+            <label for="rib">Rib</label>
+            <input type="number" class="form-control" id="rib" placeholder="RIB" formControlName="rib">
+        </div>
+        <div class="form-group">
+            <label for="limit">Limit date</label>
+            <input type="date" class="form-control" id="limit" placeholder="" formControlName="dateLimite">
+        </div>
+
+        <div class="form-group">
+            <img [src]="imageUrl">
+            <button type="button" class="share" mat-mini-fab color="primary"
+                onclick="document.getElementById('getFile').click()">
+                <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <input type='file' id="getFile" style="display:none" (change)="onImageSelected($event)">
+        </div>
+
+        <button type="submit" [disabled]="!formGroup.valid" (click)="addProject()" class="btn btn-primary mb-2">Add
+            project</button>
+
+
+
+    </form>
+</div>

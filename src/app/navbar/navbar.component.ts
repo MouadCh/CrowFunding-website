@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { AuthentificationComponent } from '../authentification/authentification.component';
 import { InscriptionComponent } from '../inscription/inscription.component';
+import { MyProfilComponent } from '../my-profil/my-profil.component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -42,7 +44,16 @@ export class NavbarComponent implements OnInit {
     dialogConfig.width = "60%";
     dialogConfig.height = "100%";
     this.dialog.open(InscriptionComponent,dialogConfig);
-    console.log("helooo");
+    
+  }
+  profil(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.height = "100%";
+    this.dialog.open(MyProfilComponent,dialogConfig);
+    
+
   }
   
 }

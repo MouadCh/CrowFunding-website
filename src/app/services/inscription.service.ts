@@ -9,13 +9,15 @@ import { IndexService } from './index.service';
 export class InscriptionService {
   mainUrl:String;
 
+
   constructor(private httpClient: HttpClient, private indexService : IndexService) {
     this.mainUrl = this.indexService.mainUrl;
    }
 
   inscription(formData: FormData):Observable<any>{
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+     
+      
   });
     return this.httpClient.post(this.mainUrl+"inscription",formData, { headers: headers });
   } 
