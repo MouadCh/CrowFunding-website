@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-product-review',
@@ -12,7 +13,7 @@ export class ProductReviewComponent implements OnInit {
   email:String;
   anonymous:String;
 
-  constructor(private productService : ProductService) { }
+  constructor(private productService : ProductService, private commentService : CommentService) { }
 
   ngOnInit() {
   }
