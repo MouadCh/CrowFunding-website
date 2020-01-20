@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { InscriptionComponent } from '../inscription/inscription.component';
+import { AuthService } from '../services/auth.service';
+import { promise } from 'protractor';
+import { resolve } from 'url';
+import { reject } from 'q';
 
 @Component({
   selector: 'app-authentification',
@@ -11,8 +15,9 @@ import { InscriptionComponent } from '../inscription/inscription.component';
 export class AuthentificationComponent implements OnInit {
 
   private formGroup: FormGroup;
- 
-  constructor(private formBuilder:FormBuilder, private dialog: MatDialog) { }
+  private valide: boolean =false;
+  constructor(private formBuilder:FormBuilder, private dialog: MatDialog,
+             private authService: AuthService) { }
   
 
   ngOnInit() {
@@ -20,13 +25,27 @@ export class AuthentificationComponent implements OnInit {
   }
   ngForm(){
     this.formGroup = this.formBuilder.group({
-      email: ['',Validators.required],
+      userName: ['',Validators.required],
       password: ['',Validators.required]
     });
 
   }
   onSubmit(){
     console.log(this.formGroup.value);
+    this.authService.setUser(this.formGroup.value.userName, this.formGroup.value.password);
+    this.authService.SeConnecter();
+     setTimeout(()=>{
+     if(this.authService.isConnecte()){
+      this.dialog.closeAll();
+      this.valide = false;
+     } else {
+      this.valide = true;
+     }
+    },1000);
+   
+    
+    
+    
   }
   oncreate(){
     const dialogConfig = new MatDialogConfig();
@@ -34,7 +53,6 @@ export class AuthentificationComponent implements OnInit {
     dialogConfig.width = "60%";
     dialogConfig.height = "100%";
     this.dialog.open(InscriptionComponent,dialogConfig);
-    console.log("helooo");
   }
 
 }
