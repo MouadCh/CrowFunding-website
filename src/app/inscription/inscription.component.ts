@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { InscriptionService } from '../services/inscription.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-inscription',
@@ -14,7 +15,8 @@ export class InscriptionComponent implements OnInit {
   private userFile: any = File;
   private imageUrl: string = "/assets/images/profil.jpg";
 
-  constructor(private formBuilder: FormBuilder, private inscriptionService: InscriptionService) { }
+  constructor(private formBuilder: FormBuilder, private inscriptionService: InscriptionService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.ngForm();
@@ -53,6 +55,7 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionService.inscription(formData).subscribe((res)=>{
       console.log(res);
     });
+    this.dialog.closeAll();
   }
 
 /*   onSubmit() {

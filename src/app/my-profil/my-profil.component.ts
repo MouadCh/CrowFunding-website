@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ProfilService } from '../services/profil.service';
 import { AuthService } from '../services/auth.service';
+import { InscriptionService } from '../services/inscription.service';
 
 @Component({
   selector: 'app-my-profil',
@@ -24,7 +25,7 @@ export class MyProfilComponent implements OnInit {
     private id:string; */
     
   constructor(private formBuilder: FormBuilder,private profilService:ProfilService,
-              private authService: AuthService) { }
+              private authService: AuthService,private inscriptionService:InscriptionService) { }
 
   
   ngOnInit() {
@@ -51,12 +52,12 @@ export class MyProfilComponent implements OnInit {
 
   ngForm() {
     this.formGroup = this.formBuilder.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      userName: ['', Validators.required],
+      nom: [this.authService.user.nom, Validators.required],
+      prenom: [this.authService.user.prenom, Validators.required],
+      userName: [this.authService.user.userName, Validators.required],
 
-      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      email: new FormControl(this.authService.user.email, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+      password: [this.authService.user.password, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
 
   }
@@ -72,15 +73,22 @@ export class MyProfilComponent implements OnInit {
     reader.readAsDataURL(file);
   }
    modifier(){
+    console.log(this.formGroup.value);
+    this.authService.user.userName = this.formGroup.value.userName;
+    this.authService.user.password = this.formGroup.value.password;
+    this.authService.user.nom = this.formGroup.value.nom;
+    this.authService.user.prenom = this.formGroup.value.prenom;
+    this.authService.user.email = this.formGroup.value.email;
 
-  /* const user = this.formGroup.value;
+    const user = this.formGroup.value;
     const formData = new FormData();
     formData.append('user',JSON.stringify(user));
     formData.append('file',this.userFile);
-    formData.append('id',this.id);
-    this.profilService.modifierProfile(formData).subscribe((res)=>{
-      console.log(res);
-    });*/
+    formData.append('id',this.authService.user.id);
+    console.log("**************************************");
+    this.inscriptionService.modifier(formData);
+    console.log("**************************************");
+    
    
   } 
 
