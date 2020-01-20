@@ -20,7 +20,10 @@ export class ProductReviewComponent implements OnInit {
   }
 
   submitComment(){
-    this.commentService.AddComment(this.comment);
+    if(this.comment.length>0){
+      this.commentService.AddComment(this.comment);
+      this.comment = "";
+    }
   }
 
 }

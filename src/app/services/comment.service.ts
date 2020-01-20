@@ -19,7 +19,11 @@ export class CommentService {
 
   currentProjetId: any;
 
-  commentImage:any[];
+  commentsImage:any=[];
+
+  // 1 Pour afficher comments 
+  // -1 Pour afficher message d'aucune comment est trouvé 
+  showComment:number;
 
   constructor(private indexService : IndexService , private http:HttpClient) { 
     this.mainUrl = this.indexService.mainUrl;
@@ -29,8 +33,14 @@ export class CommentService {
   getAllComments(currentProjetId){
     this.currentProjetId = currentProjetId;
     this.http.get(this.mainUrl+"commentaire?id="+currentProjetId).subscribe( (data:any[]) =>{
-      this.comments = data;
+      if(data != null){
+        this.comments = data;
+        this.showComment = 1;
+      }else{
+        this.showComment = -1;        
+      }
     }, err =>{
+      this.showComment = -1;        
     });
     
     
@@ -40,13 +50,29 @@ export class CommentService {
 
   GetCommentsImages(currentProjetId){
 
-    this.http.get(this.mainUrl+"commentaire?id="+currentProjetId).forEach( (el:any) => {
-      this.http.get(this.mainUrl+"userImage?id="+el.user.id , {responseType : 'text'}).subscribe( (data:any) =>{
-        this.commentImage.push(data);
-        console.log("Here");
-      }, err =>{
-        console.log("not Found ");
-      });  
+    this.http.get(this.mainUrl+"commentaire?id="+currentProjetId).forEach( (comments:any) => {
+      
+      comments.forEach(comment => {
+        var exist=false;
+
+        this.commentsImage.forEach( (el:any) => {
+          if(el.id == comment.user.id) {
+                exist = true;
+              }     
+        });
+        if(exist == false){
+          this.commentsImage.push( { id : comment.user.id , img : '1'} );
+          console.log("Idddddd"+comment.user.id);  
+        }
+      });
+      this.commentsImage.forEach( (el:any) => {
+          this.http.get(this.mainUrl+"userImage?id="+el.id , {responseType : 'text'}).subscribe( (data:any) =>{
+            el.img = data;
+            console.log("Id: "+el.id+" Img: "+el.img);
+          }, err =>{
+            console.log("not Found ");
+          });  
+      });
     });
   }
 

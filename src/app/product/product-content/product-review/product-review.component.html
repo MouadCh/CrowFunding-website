@@ -12,6 +12,7 @@
       <div class="form-row">
         <textarea
             class="input"
+            name="comment"
             placeholder="Add comment..."
             [(ngModel)]="comment"
             [ngModelOptions]="{standalone: true}"
@@ -21,7 +22,7 @@
 
       <!-- Submit Button -->
       <div class="form-row">
-        <input type="submit"  value="Add Comment">
+        <input type="submit"  value="Add Comment" >
       </div>
     </form>
   </div>
@@ -29,18 +30,26 @@
 
  <!-- User Non-connecté -->
 <div style="display: flex; justify-content: center;"  *ngIf=" authService.jwt == 0">
-  <span style=" background-color: rgb(193, 213, 221); border: 1px solid rgb(153, 177, 199);">  You have to be connected to add a comment !!</span>
+  <span style=" background-color: rgb(193, 213, 221); border: 1px solid rgb(153, 177, 199);">
+      You have to be connected to add a comments !!
+  </span>
 </div>
 
-<!-- Contenedor Principal -->
+<!-- Affichage des commentaires -->
 <div style="margin-bottom: 200px;" class="comments-container">
     <div id="comments-list" class="comments-list">
         <div *ngFor="let comm of commentService.comments" >
             <li>
                 <div class="comment-main-level">
-                    <!-- Avatar -->
+                    <!-- User Image -->
+                    <div *ngFor="let commImage of commentService.commentsImage" >
+                      <div *ngIf="commImage.id == comm.user.id">
+                        <div class="comment-avatar">
+                          <img [src]="commImage.img" alt="">
+                        </div>
+                      </div>
+                    </div>
                     <!-- <div class="comment-avatar"><img src="{{comm.user.imageUrl}}" alt=""></div> -->
-                    <div class="comment-avatar"><img [src]="commentService.commentImage" alt=""></div>
                     <!-- Contenedor del Comentario -->
                     <div class="comment-box">
                         <div class="comment-head">
