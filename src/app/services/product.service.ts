@@ -3,6 +3,7 @@ import { Comment } from '../models/comment.model';
 import { IndexService } from './index.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CommentService } from './comment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -39,26 +40,8 @@ export class ProductService {
   date:Date;
   date_limite:Date;
 
-  comments:any[]=[
-                {
-                  comment:"KHAAADAMAAAA mnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?",
-                  date:"05/11/2018",
-                  user: {
-                        username:"Mouad",
-                        image:"https://lh3.googleusercontent.com/-zn5UCGgmIeA/AAAAAAAAAAI/AAAAAAAAAAA/4b1SUl-mHI0/s128-c-k/photo.jpg"  
-                      }       
-                },
-                {
-                  comment:"Ok Great :) ",
-                  date:"10/07/2019",
-                  user: {
-                        username:"Lmekkaoui",
-                        image:"http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"  
-                      }               
-                }
-            ];
-
-  constructor(private indexService:IndexService, private http: HttpClient, private router:Router) { 
+  constructor(private indexService:IndexService, private http: HttpClient, private router:Router,
+                    private commentService : CommentService) { 
     this.mainUrl = this.indexService.mainUrl;
   }
 
@@ -66,7 +49,7 @@ export class ProductService {
     this.currentProjetId = id;
     this.http.get(this.mainUrl+"projetbyid?id="+id).subscribe((data:any)=>{
       if(data != null){
-        console.log(data);
+        // console.log(data);
         this.titre = data.titre;
         this.description = data.description;
         this.date = data.dateCreation;
@@ -76,6 +59,12 @@ export class ProductService {
         this.visitorsNb = data.nbrVues;
         this.raised = data.total;
         this.budget = data.budget;
+
+        //To Get All comments associated
+        this.commentService.getAllComments(id);
+        //To Associate each pict with a comment
+        this.commentService.GetCommentsImages(id);
+        
       }else{
         this.router.navigateByUrl("");
       }

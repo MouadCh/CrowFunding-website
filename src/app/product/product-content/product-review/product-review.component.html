@@ -1,11 +1,13 @@
-<!-- <div *ngIf=" authService.jwt != '' "> -->
+ <!-- User connecté -->
+ <div *ngIf=" authService.jwt.length > 0">
   <!-- Form -->
   <div class="comment-form">
-    <!-- Comment Avatar -->
+    <!-- Img Avatar -->
     <div class="comment-avatar">
       <img [src]="imgPath">
     </div>
 
+    <!-- Comment Avatar -->
     <form  (ngSubmit)="submitComment()" class="form" name="form"  ng-submit="form.$valid " novalidate>
       <div class="form-row">
         <textarea
@@ -17,35 +19,38 @@
         </textarea>
       </div>
 
-      <div style="z-index: 30;" class="form-row">
+      <!-- Submit Button -->
+      <div class="form-row">
         <input type="submit"  value="Add Comment">
       </div>
     </form>
   </div>
-<!-- </div>
+</div>
 
-<div *ngIf="authService.jwt.lenght == 0">
-
-</div> -->
+ <!-- User Non-connecté -->
+<div style="display: flex; justify-content: center;"  *ngIf=" authService.jwt == 0">
+  <span style=" background-color: rgb(193, 213, 221); border: 1px solid rgb(153, 177, 199);">  You have to be connected to add a comment !!</span>
+</div>
 
 <!-- Contenedor Principal -->
 <div style="margin-bottom: 200px;" class="comments-container">
     <div id="comments-list" class="comments-list">
-        <div *ngFor="let comm of productService.comments" >
+        <div *ngFor="let comm of commentService.comments" >
             <li>
                 <div class="comment-main-level">
                     <!-- Avatar -->
-                    <div class="comment-avatar"><img src="{{comm.user.image}}" alt=""></div>
+                    <!-- <div class="comment-avatar"><img src="{{comm.user.imageUrl}}" alt=""></div> -->
+                    <div class="comment-avatar"><img [src]="commentService.commentImage" alt=""></div>
                     <!-- Contenedor del Comentario -->
                     <div class="comment-box">
                         <div class="comment-head">
-                            <h6 class="comment-name"><a href="http://creaticode.com/blog">{{comm.user.username}}</a></h6>
-                            <span>{{comm.date}}</span>
+                            <h6 class="comment-name"><a href="http://creaticode.com/blog">{{comm.user.userName}}</a></h6>
+                            <span>{{comm.date | date : 'dd/mm/yyyy'}}</span>
                             <i class="fa fa-reply"></i>
                             <i class="fa fa-heart"></i>
                         </div>
                         <div class="comment-content">
-                            {{comm.comment}}
+                            {{comm.commentaire}}
                         </div>
                     </div>
                 </div>

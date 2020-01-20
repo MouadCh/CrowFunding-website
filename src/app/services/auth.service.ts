@@ -14,7 +14,7 @@ export class AuthService {
   }
   
 
-  jwt:String="";
+  jwt:String="d";
 
   constructor(private indexService:IndexService , private htpp:HttpClient) { 
     this.mainUrl = this.indexService.mainUrl;

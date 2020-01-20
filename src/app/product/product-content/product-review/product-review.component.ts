@@ -14,14 +14,13 @@ export class ProductReviewComponent implements OnInit {
   comment:String="";
   imgPath:String="https://lh3.googleusercontent.com/-zn5UCGgmIeA/AAAAAAAAAAI/AAAAAAAAAAA/4b1SUl-mHI0/s128-c-k/photo.jpg";
 
-  constructor(private productService : ProductService, private commentService : CommentService,
-                private authService:AuthService){  }
+  constructor(private commentService : CommentService, private authService:AuthService){  }
 
   ngOnInit() {
   }
 
   submitComment(){
-    console.log(this.comment, this.authService.jwt.length);
+    this.commentService.AddComment(this.comment);
   }
 
 }
