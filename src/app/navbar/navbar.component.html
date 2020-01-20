@@ -42,12 +42,14 @@
 								</li>
 								<li style="border: 1px black solid;" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 								</li>
-								<li style="text-align: right;" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-										<a class="nav-link" (click)=(auth())>Se connecter</a>
+								<li *ngIf="!this.authService.isConnecte()" style="text-align: right;" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+										<a class="nav-link" (click)=(auth())>Log In</a>
 								</li>
-								<li style="text-align: right;" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" (click)=(inscrire())>S'inscrire</a>
-							</li>
+								<li *ngIf="this.authService.isConnecte()" style="text-align: right;" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" (click)=(logOut())>Log Out</a>
+								</li>
+
+
 							</ul>
 						</div>
 					</nav>		

@@ -36,6 +36,7 @@ import { InscriptionService } from './services/inscription.service';
 import { ProjetFormComponent } from './projet-form/projet-form.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { MyProfilComponent } from './my-profil/my-profil.component';
+import { ProfilService } from './services/profil.service';
 
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 
@@ -90,7 +91,7 @@ const appRoutes: Routes = [
     
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [InscriptionService],
+  providers: [InscriptionService, ProfilService],
   bootstrap: [AppComponent],
   entryComponents: [InscriptionComponent]
 })
