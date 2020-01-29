@@ -31,17 +31,19 @@ export class AuthentificationComponent implements OnInit {
 
   }
   onSubmit(){
-    console.log(this.formGroup.value);
     this.authService.setUser(this.formGroup.value.userName, this.formGroup.value.password);
-    this.authService.SeConnecter();
+     this.authService.SeConnecter();
+   
+    
      setTimeout(()=>{
+       console.log(this.formGroup.value);
      if(this.authService.isConnecte()){
       this.dialog.closeAll();
       this.valide = false;
      } else {
       this.valide = true;
      }
-    },1000);
+    },2000);
    
     
     

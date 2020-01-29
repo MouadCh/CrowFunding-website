@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IndexService } from './index.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProfilService {
 
   mainUrl:String ;
 
-  constructor(private httpClient: HttpClient, private indexService : IndexService) {
+  constructor(private httpClient: HttpClient, private indexService : IndexService, private authService: AuthService) {
     this.mainUrl = this.indexService.mainUrl;
    }
 
@@ -21,12 +22,31 @@ export class ProfilService {
     return this.httpClient.get(this.mainUrl+"user?id="+id);
 
   }
-  modifierProfile(formData: FormData):Observable<any>{
+  
+  modifier(formData: FormData){
+    console.log("aaaaa");
     const headers = new HttpHeaders({
 
        });
-    return this.httpClient.put(this.mainUrl+"modifierProfile",formData, { headers: headers });
+    this.httpClient.put(this.mainUrl+"modifierProfile",formData, { headers: headers }).subscribe((res)=>{
+      console.log(res);
+    });
+    console.log("bbbbb");
   } 
+
+  getCarte(idCarte: string):Observable<any>{
+    
+    let str: string = this.authService.jwt;
+    let head: string = 'Bearer '+str['jwt']
+    console.log(head);
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+str['jwt']
+
+    });
+    
+    return this.httpClient.get(this.mainUrl+"carteById?id="+idCarte,{headers: headers});
+  
+  }
 
 
 

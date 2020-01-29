@@ -13,22 +13,22 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss',
-               './navbar.css']
+    './navbar.css']
 })
 
 
 export class NavbarComponent implements OnInit {
-  constructor(private navBarService:NavbarService, private indexService:IndexService,
-     private router:Router, private dialog: MatDialog, private authService:AuthService) {
-   }
+  constructor(private navBarService: NavbarService, private indexService: IndexService,
+    private router: Router, private dialog: MatDialog, private authService: AuthService) {
+  }
 
   ngOnInit() {
   }
 
-  goHome(){
+  goHome() {
     // this.router.dispose();
-    this.indexService.activePage="home";
-    this.indexService.activeProduct="";
+    this.indexService.activePage = "home";
+    this.indexService.activeProduct = "";
   }
 
   auth() {
@@ -40,21 +40,22 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  profil(){
-    if(this.authService.isConnecte()){
+  profil() {
+    if (this.authService.isConnecte()) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
       dialogConfig.width = "60%";
       dialogConfig.height = "100%";
-      this.dialog.open(MyProfilComponent,dialogConfig);
-    } else{
+      this.dialog.open(MyProfilComponent, dialogConfig);
+    } else {
       this.auth();
     }
 
 
   }
-  logOut(){
+  logOut() {
     this.authService.reset();
+
   }
   
   Contact(){

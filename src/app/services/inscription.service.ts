@@ -20,11 +20,4 @@ export class InscriptionService {
     return this.httpClient.post(this.mainUrl+"inscription",formData, { headers: headers });
   } 
 
-  modifier(formData: FormData){
-    console.log("aaaaa");
-    const headers = new HttpHeaders({
-
-       });
-    this.httpClient.put(this.mainUrl+"modifier",formData, { headers: headers });
-  } 
 }

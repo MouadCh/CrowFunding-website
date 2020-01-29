@@ -11,9 +11,22 @@ import { MatDialog } from '@angular/material';
 export class InscriptionComponent implements OnInit {
 
   private formGroup: FormGroup;
-//  private filetoUpload: File = null;
   private userFile: any = File;
   private imageUrl: string = "/assets/images/profil.jpg";
+  private userInsc = {
+    nom: '',
+    prenom: '',
+    userName: '',
+    email: '',
+    password:''
+
+  }
+  private carte = {
+    numeroCarte:'',
+    dateExp:'',
+    proprietaire:'',
+
+  }
 
   constructor(private formBuilder: FormBuilder, private inscriptionService: InscriptionService,
               private dialog: MatDialog) { }
@@ -27,9 +40,12 @@ export class InscriptionComponent implements OnInit {
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       userName: ['', Validators.required],
-
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+ 
+      numeroCarte: ['', Validators.required],
+      dateExp: ['', Validators.required],
+      proprietaire: ['', Validators.required],
     });
 
   }
@@ -45,32 +61,32 @@ export class InscriptionComponent implements OnInit {
     }
     reader.readAsDataURL(file);
   }
+ 
+   inscrire(){
+     this.userInsc.nom = this.formGroup.value.nom;
+     this.userInsc.prenom = this.formGroup.value.prenom;
+     this.userInsc.userName = this.formGroup.value.userName;
+     this.userInsc.email = this.formGroup.value.email;
+     this.userInsc.password = this.formGroup.value.password;
 
+     this.carte.dateExp = this.formGroup.value.dateExp;
+     this.carte.numeroCarte = this.formGroup.value.numeroCarte;
+     this.carte.proprietaire = this.formGroup.value.proprietaire;
+   
 
-  inscrire(){
-    const user = this.formGroup.value;
+    //const user = this.formGroup.value;
     const formData = new FormData();
-    formData.append('user',JSON.stringify(user));
+    formData.append('user',JSON.stringify(this.userInsc));
+    formData.append('carte',JSON.stringify(this.carte));
     formData.append('file',this.userFile);
+    
     this.inscriptionService.inscription(formData).subscribe((res)=>{
       console.log(res);
     });
     this.dialog.closeAll();
-  }
+  } 
 
-/*   onSubmit() {
-    console.log(this.formGroup.value);
-    var user =this.formGroup.value;
-    console.log("imageUrl :" + this.imageUrl);
-    console.log("filetoUpload :" + this.filetoUpload.name);
-    var formData = new FormData();
-    formData.append('file', this.userFile);
-    formData.append('user', JSON.stringify(user)); 
-    this.inscriptionService.inscription(formData).subscribe((res) => {
-      console.log(res);
-    });
-  }
- */
+
  
 
 
