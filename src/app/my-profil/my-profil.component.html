@@ -33,6 +33,22 @@
               formControlName="password">
           </div>
       
+          <h5>Carte Informations</h5>
+          <div class="form-group">
+            <label for="date">Expiration date</label>
+            <input type="date" class="form-control" id="date" name="date" [(ngModel)]="this.carte.dateExp"
+            formControlName="dateExp">
+          </div>
+          <div class="form-group">
+            <label for="numcarte">Carte number</label>
+            <input type="number" class="form-control" id="numcarte" name="numcarte"  [(ngModel)]="this.carte.numeroCarte" 
+            formControlName="numeroCarte">
+          </div>
+          <div class="form-group">
+            <label for="carteOwner">Carte owner</label>
+            <input type="text" class="form-control" id="carteOwner" name="carteOwner" [(ngModel)]="this.carte.proprietaire"
+            formControlName="proprietaire">
+          </div>
           
       
           <button type="submit"  (click)="modifier()" class="btn btn-primary mb-2">Validate</button>

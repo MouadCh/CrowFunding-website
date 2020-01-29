@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IndexService } from './index.service';
 
@@ -25,5 +25,12 @@ export class ProjetService {
   getAlmostTheGoalProjects(){
     return this.http.get(this.mainUrl+"projetAlmost");
   }
+
+  addProject(formData: FormData):Observable<any>{
+    const headers = new HttpHeaders({
+
+       });
+    return this.http.post(this.mainUrl+"projet",formData, { headers: headers });
+  } 
 
 }

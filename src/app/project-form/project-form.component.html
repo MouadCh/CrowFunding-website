@@ -1,0 +1,61 @@
+<p class="h4 mb-4 text-center">add new Idea to Support</p>
+
+<div class="container">
+
+
+
+    <form [formGroup]="formGroup">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-form example-full-width">
+                    <input matInput placeholder="Title" formControlName="titre">
+                </mat-form-field>
+
+
+                <mat-form-field class="example-form example-full-width">
+                    <textarea matInput placeholder="Write your project story here" formControlName="story"></textarea>
+                </mat-form-field>
+                <mat-form-field class="example-form example-full-width">
+                    <textarea matInput placeholder="Give us a description of your project"
+                        formControlName="description"></textarea>
+                </mat-form-field>
+
+                
+<mat-form-field>
+        <mat-select placeholder="Toppings" [formControl]="toppings" multiple >
+          <mat-select-trigger>
+            {{toppings.value ? toppings.value[0] : ''}}
+            <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+              (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="example-form example-full-width">
+                    <input type="number" matInput placeholder="what is your goal price" formControlName="budget">
+                </mat-form-field>
+                <mat-form-field class="example-form example-full-width">
+                    <input type="number" matInput placeholder="RIB" formControlName="rib">
+                </mat-form-field>
+                <mat-form-field class="example-form example-full-width">
+                    <input type="date" matInput placeholder="Limit Date" formControlName="dateLimite">
+                </mat-form-field>
+
+                <button class="example-full-width addImage " mat-raised-button color="warn"
+                onclick="document.getElementById('getFile').click()">Add images</button>
+
+              <input type='file' id="getFile" style="display:none" (change)="onImageSelected($event)" multiple>
+
+            </div>
+        </div>
+
+
+        <button [disabled]="!formGroup.valid" (click)="addProject()" class="example-full-width" mat-raised-button color="primary">Submit the new project</button>
+    </form>
+</div>

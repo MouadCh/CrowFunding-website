@@ -22,7 +22,7 @@ export class AuthService  {
     prenom:'',
     userName:'',
     password:'',
-    //idCart:'',
+    idCart:'',
     role:''
   }
   public setUser(userName: string, password:string){
@@ -41,7 +41,7 @@ export class AuthService  {
     this.user.userName = '';
     this.user.password = '';
     this.user.email = '';
-    //this.user.idCart = res[''];
+    this.user.idCart ='';
     //this.user.imageUrl = '';
     this.user.role = ''; 
     
@@ -72,13 +72,15 @@ export class AuthService  {
      );
      this.httpClient.get(this.mainUrl+"userByUserName?userName="+this.userAuth.userName)
      .subscribe((res)=>{
+       /* console.log(res);
+       console.log(res['carte']['id']); */
      this.user.id = res['id'];
      this.user.nom = res['nom'];
      this.user.prenom = res['prenom'];
      this.user.userName = res['userName'];
      this.user.password = res['password'];
      this.user.email = res['email'];
-     //this.user.idCart = res[''];
+     this.user.idCart = res['carte']['id'];
      //this.user.imageUrl = res['imageUrl'];
      this.user.role = res['role']; 
     

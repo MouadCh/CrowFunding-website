@@ -37,14 +37,18 @@ import { ProjetFormComponent } from './projet-form/projet-form.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { MyProfilComponent } from './my-profil/my-profil.component';
 import { ProfilService } from './services/profil.service';
-
+import { IndexService } from './services/index.service';
+import { DatePipe } from '@angular/common';
+import { ProjectFormComponent } from './project-form/project-form.component';
+import {MatInputModule} from '@angular/material/input';
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 
 const appRoutes: Routes = [
   {path:'authentification',component: AuthentificationComponent},
   {path: 'inscription',component: InscriptionComponent},
   {path: '',component: AuthentificationComponent},
-  {path: 'profil',component: MyProfilComponent}
+  {path: 'profil',component: MyProfilComponent},
+  {path: 'addProject',component: ProjectFormComponent}
 ];
 @NgModule({
   declarations: [
@@ -68,6 +72,7 @@ const appRoutes: Routes = [
     ProjetFormComponent,
     MyProjectsComponent,
     MyProfilComponent,
+    ProjectFormComponent,
     
   ],
   imports: [
@@ -83,6 +88,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatInputModule,
     //MatDialog,
     //MatDialogConfig,
     MatDialogModule,
@@ -91,7 +97,7 @@ const appRoutes: Routes = [
     
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [InscriptionService, ProfilService],
+  providers: [InscriptionService, ProfilService,IndexService,DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [InscriptionComponent]
 })
