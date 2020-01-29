@@ -1,14 +1,15 @@
  <!-- User connecté -->
- <div *ngIf=" authService.jwt.length > 0">
+ <div *ngIf=" authService.jwt != null">
   <!-- Form -->
   <div class="comment-form">
     <!-- Img Avatar -->
     <div class="comment-avatar">
-      <img [src]="imgPath">
+      <img [src]="authService.userImage">
     </div>
 
     <!-- Comment Avatar -->
-    <form  (ngSubmit)="submitComment()" class="form" name="form"  ng-submit="form.$valid " novalidate>
+    <form  (ngSubmit)="submitComment()" class="form" name="form" novalidate>
+      
       <div class="form-row">
         <textarea
             class="input"
@@ -29,7 +30,7 @@
 </div>
 
  <!-- User Non-connecté -->
-<div style="display: flex; justify-content: center;"  *ngIf=" authService.jwt == 0">
+<div style="display: flex; justify-content: center;"  *ngIf=" authService.jwt == null">
   <span style=" background-color: rgb(193, 213, 221); border: 1px solid rgb(153, 177, 199);">
       You have to be connected to add a comments !!
   </span>

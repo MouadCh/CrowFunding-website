@@ -40,6 +40,8 @@ export class ProductService {
   date:Date;
   date_limite:Date;
 
+  date_diff:number;
+
   constructor(private indexService:IndexService, private http: HttpClient, private router:Router,
                     private commentService : CommentService) { 
     this.mainUrl = this.indexService.mainUrl;
@@ -60,6 +62,13 @@ export class ProductService {
         this.raised = data.total;
         this.budget = data.budget;
 
+        //Diff Between les date en jours
+        let date1 = new Date(this.date_limite)  ;
+        var date2 = new Date( this.date );
+        
+        this.date_diff = ( date1.getTime() - date2.getTime() ) / (1000 * 3600 * 24);
+        console.log("Diff "+this.date_diff)
+        
         //To Get All comments associated
         this.commentService.getAllComments(id);
         //To Associate each pict with a comment

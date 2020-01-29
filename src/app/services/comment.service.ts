@@ -42,14 +42,12 @@ export class CommentService {
     }, err =>{
       this.showComment = -1;        
     });
-    
-    
-    
-    // console.log("Commmmmmmmtns size = "+this.commentsSize);
+
   }
 
   GetCommentsImages(currentProjetId){
 
+    //Parcourir chaque comment et associer l'image associe aux utilisateur
     this.http.get(this.mainUrl+"commentaire?id="+currentProjetId).forEach( (comments:any) => {
       
       comments.forEach(comment => {
@@ -60,36 +58,38 @@ export class CommentService {
                 exist = true;
               }     
         });
+
+        //---------------- Pour eviter la duplication des utilisateurs-------------------------
         if(exist == false){
-          this.commentsImage.push( { id : comment.user.id , img : '1'} );
-          console.log("Idddddd"+comment.user.id);  
-        }
-      });
-      this.commentsImage.forEach( (el:any) => {
-          this.http.get(this.mainUrl+"userImage?id="+el.id , {responseType : 'text'}).subscribe( (data:any) =>{
-            el.img = data;
-            console.log("Id: "+el.id+" Img: "+el.img);
-          }, err =>{
-            console.log("not Found ");
-          });  
-      });
+            this.commentsImage.push( { id : comment.user.id , img : '1'} );
+          }
+        });
+
+        this.commentsImage.forEach( (el:any) => {
+            this.http.get(this.mainUrl+"userImage?id="+el.id , {responseType : 'text'}).subscribe( (data:any) =>{
+              el.img = data;
+              console.log("Id: "+el.id+" Img: "+el.img);
+            }, err =>{
+              console.log("not Found ");
+            });  
+        });
+        //-----------------------------------------------------------------------------------------
     });
   }
 
-  AddComment(comment){
+  AddComment(comment,idUser){
     let data={
         commentaire : comment,
         projet : {
               id : this.currentProjetId
             },
         user :  {
-              id : 1
+              id : idUser
         }
     }
     this.http.post(this.mainUrl+"commentaire",data).subscribe( data =>{
-      console.log("sended");
-      console.log(data);
       this.getAllComments(this.currentProjetId);
+      this.GetCommentsImages(this.currentProjetId);
     });
   }
 

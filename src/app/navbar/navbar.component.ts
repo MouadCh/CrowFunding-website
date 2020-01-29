@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { NavbarService } from '../service/navbar.service';
+import { NavbarService } from '../services/navbar.service';
 import { IndexService } from '../services/index.service';
-import { Router } from '@angular/router';
+import { Router, Scroll } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { AuthentificationComponent } from '../authentification/authentification.component';
 import { InscriptionComponent } from '../inscription/inscription.component';
@@ -57,4 +57,8 @@ export class NavbarComponent implements OnInit {
     this.authService.reset();
   }
   
+  Contact(){
+    console.log("Cntct");
+  }
+
 }

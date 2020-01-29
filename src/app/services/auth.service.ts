@@ -9,6 +9,9 @@ import { catchError } from 'rxjs/operators'
 })
 export class AuthService  {
    mainUrl:String;
+
+  userImage:String; 
+
   jwt:any;
    userAuth = {
     userName:'',
@@ -25,6 +28,7 @@ export class AuthService  {
     //idCart:'',
     role:''
   }
+
   public setUser(userName: string, password:string){
     this.userAuth.userName = userName;
     this.userAuth.password = password;
@@ -44,9 +48,6 @@ export class AuthService  {
     //this.user.idCart = res[''];
     //this.user.imageUrl = '';
     this.user.role = ''; 
-    
-    
-
 
   }
   
@@ -81,14 +82,19 @@ export class AuthService  {
      //this.user.idCart = res[''];
      //this.user.imageUrl = res['imageUrl'];
      this.user.role = res['role']; 
-    
-    
-     }
-    
-     );
-   
-     
+        
+     this.GetUserImage(res['id']);
+     });
 
+ 
+  }
+
+  GetUserImage(id){
+    this.httpClient.get(this.mainUrl+"userImage?id="+id , {responseType : 'text'}).subscribe( (data:any) =>{
+      this.userImage= data;
+    }, err =>{
+      console.log("not Found ");
+    });  
   }
 
   isConnecte():boolean{

@@ -39,7 +39,7 @@
           <div class='main-content'>
             <!-- <h2>{{pre_titre}}</h2> -->
             <h2>{{productService.titre}}</h2>
-            <h3>Ajouté le {{productService.date | date: 'dd/mm/yyyy'}}</h3>
+            <h3>Ajouté le {{productService.date | date: 'dd/MM/yyyy'}}</h3>
             <div class='description' id='description'>
                 {{productService.description}}
             </div>
@@ -62,7 +62,7 @@
                     <span class="goal-number">
                       <div id="countdown"></div>
                     </span>
-                    <span class="goal-number"> {{productService.date_limite | date: 'd'}}</span>
+                    <span class="goal-number"> {{ productService.date_diff }}</span>
                     <span class="goal-label">  Days to Go</span>
                   </div>
                 </div>
