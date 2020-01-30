@@ -7,6 +7,7 @@ import { AuthentificationComponent } from '../authentification/authentification.
 import { InscriptionComponent } from '../inscription/inscription.component';
 import { MyProfilComponent } from '../my-profil/my-profil.component';
 import { AuthService } from '../services/auth.service';
+import { ProjetService } from '../services/projet.service';
 
 
 @Component({
@@ -19,18 +20,11 @@ import { AuthService } from '../services/auth.service';
 
 export class NavbarComponent implements OnInit {
   constructor(private navBarService: NavbarService, private indexService: IndexService,
-    private router: Router, private dialog: MatDialog, private authService: AuthService) {
+    private router: Router, private dialog: MatDialog, private authService: AuthService, private projetService : ProjetService) {
   }
 
   ngOnInit() {
   }
-
-  goHome() {
-    // this.router.dispose();
-    this.indexService.activePage = "home";
-    this.indexService.activeProduct = "";
-  }
-
   auth() {
 
     const dialogConfig = new MatDialogConfig();
@@ -60,6 +54,27 @@ export class NavbarComponent implements OnInit {
   
   Contact(){
     console.log("Cntct");
+  }
+
+
+  All(){
+    this.projetService.projetsType = "All" ;
+  }
+  Education(){
+    this.projetService.projetsType = "Education" ;
+    this.projetService.getEducationProjet();
+  }
+  Science(){
+    this.projetService.projetsType = "Science" ;
+    this.projetService.getScienceProjet();
+  }
+  Water(){
+    this.projetService.projetsType = "Water" ;
+    this.projetService.getWaterProjet();
+  }
+  Art(){
+    this.projetService.projetsType = "Art" ;
+    this.projetService.getArtProjet();
   }
 
 }

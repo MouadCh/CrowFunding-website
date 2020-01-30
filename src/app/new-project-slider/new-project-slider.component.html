@@ -5,13 +5,13 @@
         <mdb-carousel-item *ngFor="let item of slides; let i = index">
             <div class="col-md-3"  [ngClass]="{'d-none d-md-block': cardIndex !== 0}"
                 *ngFor="let card of item; let cardIndex = index">
-                <mdb-card (click)="indexService.ClickOnProduct(card.id)" class="my-1">
-                     <img src="https://images.pexels.com/photos/911682/pexels-photo-911682.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                <mdb-card style="height: 400px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
+                     <img style="height: 180px;" src="https://images.pexels.com/photos/911682/pexels-photo-911682.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
                     <mdb-card-body>
                         <mdb-card-title>
                             <h4>{{card.titre}}</h4>
                         </mdb-card-title>
-                        <p>{{card.description}}</p>
+                        <!-- <p>{{card.description}}</p> -->
 
 
                         <button class="share" mat-mini-fab color="primary">
