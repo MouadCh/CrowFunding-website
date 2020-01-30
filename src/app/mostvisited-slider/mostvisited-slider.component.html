@@ -7,17 +7,15 @@
                 *ngFor="let card of item; let cardIndex = index">
                 <mdb-card style="height: 400px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
                      <!-- <img [src]="card.img"> -->
-                     <img style="height: 180px;" src="https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                     <img style="height: 180px;" src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
                      <mdb-card-body>
                         <mdb-card-title>
                             <h4>{{card.titre}}</h4>
                         </mdb-card-title>
                         <!-- <p>{{card.description}}</p> -->
-
-
-                        <button class="share" mat-mini-fab color="primary">
+                        <!-- <button class="share" mat-mini-fab color="primary">
                             <mat-icon>share</mat-icon>
-                        </button>
+                        </button> -->
                         <hr>
                         <div class="info">
                             <ul class="list-unstyled list-inline font-small">
@@ -30,14 +28,14 @@
                                 </li>
                                 <li class="list-inline-item pr-2 ">
                                     <div class="mdl-card__supporting-text">
-                                        {{ card.budget}}
+                                        {{card.budget}}
                                         <!-- date de fin de donation  -->
                                         <i class="material-icons">attach_money</i>
                                     </div>
                                 </li>
                                 <li class="list-inline-item pr-2 ">
                                     <div class="mdl-card__supporting-text">
-                                        {{ card.nbrVues}}
+                                        {{card.nbrVues}}
                                         <!-- date de fin de donation  -->
                                         <i class="material-icons">visibility</i>
                                     </div>

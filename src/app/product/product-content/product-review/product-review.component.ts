@@ -21,7 +21,7 @@ export class ProductReviewComponent implements OnInit {
 
   submitComment(){
     if(this.comment.length>0){
-      this.commentService.AddComment(this.comment);
+      this.commentService.AddComment(this.comment,this.authService.user.id);
       this.comment = "";
     }
   }

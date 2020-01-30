@@ -11,18 +11,10 @@ import { timer } from 'rxjs';
 })
 export class ProductHeaderComponent implements OnInit {
 
-    // titre:String="amwa cookbook 01: potluck";
-    // // sous_titre:String="this is a bid to connect to our roots—diaspora dreaming through a warm meal and a reclaiming of our stories past, present, and future";
-    // description:String="  brought to you with love from seo yun son, sara chao, sarah waldorf, michelle cho, and the amwa community. recipes by amrit and narinder kaur, angela lin, chisa hughes, elena yu, ellie lee, jing niu, sai tripathi, mitsuko brooks, samantha ayson, sarah waldorf, seo yun son, and yunyi li.  ";
-    // image:String="https://ksr-ugc.imgix.net/assets/027/454/076/1ae084c5767533596a0256106d8606ce_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1575850721&auto=format&gif-q=50&q=92&s=72bd7d50714612308ce1d1b8d349f423";
-    
-    // budget:number=10000;
-    // raised:number=1640;
+    constructor(private productService : ProductService, private indexService:IndexService) { 
+      console.log("Ddddd",this.productService.date);
 
-    // date:String="21/04/2019";
-    // date_limite:number=16;
-
-    constructor(private productService : ProductService, private indexService:IndexService) { }
+    }
 
     timeLeft: number = 60;
     interval;
@@ -41,10 +33,21 @@ export class ProductHeaderComponent implements OnInit {
         },50);
 
       }, 1500);
+
+      this.calculateDiff();
     }
 
     Donate(){
       console.log("Donate");
+    }
+
+    diffDays:number;
+    calculateDiff(){
+      // var date1:any = new Date(this.productService.date_limite) ;
+      // var date2:any = new Date(this.productService.date) ;
+      //  Math.floor((date1 - date2) / (1000 * 60 * 60 * 24));
+      // this.diffDays = (Date.UTC(this.productService.date_limite.getFullYear(), this.productService.date_limite.getMonth(), this.productService.date_limite.getDate()) - Date.UTC(this.productService.date.getFullYear(), this.productService.date.getMonth(), this.productService.date.getDate()) ) /(1000 * 60 * 60 * 24);
+      console.log("Ddddd",this.productService.date_limite);
     }
 
 }

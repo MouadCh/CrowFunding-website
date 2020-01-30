@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarService } from './service/navbar.service';
+import { NavbarService } from './services/navbar.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { AuthService } from './services/auth.service';

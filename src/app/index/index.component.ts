@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarService } from '../service/navbar.service';
+import { NavbarService } from '../services/navbar.service';
 import { IndexService } from '../services/index.service';
 
   // declare const scrollFooter:any;

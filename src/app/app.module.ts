@@ -41,6 +41,8 @@ import { IndexService } from './services/index.service';
 import { DatePipe } from '@angular/common';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import {MatInputModule} from '@angular/material/input';
+import { MostvisitedSliderComponent } from './mostvisited-slider/mostvisited-slider.component';
+import { TypeSliderComponent } from './type-slider/type-slider.component';
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 
@@ -75,6 +77,8 @@ const appRoutes: Routes = [
     MyProjectsComponent,
     MyProfilComponent,
     ProjectFormComponent,
+    MostvisitedSliderComponent,
+    TypeSliderComponent,
     
   ],
   imports: [

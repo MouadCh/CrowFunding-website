@@ -10,6 +10,10 @@ export class ProjetService {
 
   mainUrl:String ;
 
+  slidesType: any = [[]];
+  cardsType = [];
+  projetsType="All";
+
   constructor(private http: HttpClient , private indexService : IndexService) { 
     this.mainUrl = this.indexService.mainUrl;
   }
@@ -19,11 +23,15 @@ export class ProjetService {
   }
 
   getMostDonatedProjects(){
-    return this.http.get(this.mainUrl+"projetMostVisited");
+    return this.http.get(this.mainUrl+"projetMostDonated");
   }
 
   getAlmostTheGoalProjects(){
     return this.http.get(this.mainUrl+"projetAlmost");
+  }
+
+  getMostVisited(){
+    return this.http.get(this.mainUrl+"projetMostVisited");
   }
 
   addProject(formData: FormData):Observable<any>{
@@ -42,4 +50,41 @@ export class ProjetService {
     });
   }
 
+
+
+  
+  getArtProjet(){
+    console.log("Art");
+    this.http.get(this.mainUrl+"Artprojet").subscribe( (data:any[]) =>{
+      this.cardsType = data;
+      this.slidesType = this.chunk(this.cardsType, 4);
+      console.log(data);
+    });
+  }
+  getEducationProjet(){
+    this.http.get(this.mainUrl+"Educationprojet").subscribe( (data:any[]) =>{
+      this.cardsType = data;
+      this.slidesType = this.chunk(this.cardsType, 4);
+    });
+  }
+  getScienceProjet(){
+    this.http.get(this.mainUrl+"Scienceprojet").subscribe( (data:any[]) =>{
+      this.cardsType = data;
+      this.slidesType = this.chunk(this.cardsType, 4);
+    });
+  }
+  getWaterProjet(){
+    this.http.get(this.mainUrl+"Waterprojet").subscribe( (data:any[]) =>{
+      this.cardsType = data;
+      this.slidesType = this.chunk(this.cardsType, 4);
+    });
+  }
+
+  chunk(arr, chunkSize) {
+    let R = [];
+    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
+      R.push(arr.slice(i, i + chunkSize));
+    }
+    return R;
+  }
 }
