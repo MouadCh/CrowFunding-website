@@ -1,1 +1,66 @@
-<p>my-projects works!</p>
+<div class="rout">
+    
+
+<table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="titre" >
+    <th mat-header-cell *matHeaderCellDef> {{columnsNames[0]}} </th>
+    <td mat-cell *matCellDef="let element" > {{element.titre}} </td>
+  </ng-container>
+  <ng-container matColumnDef="dateCreation" >
+        <th mat-header-cell *matHeaderCellDef> {{columnsNames[1]}} </th>
+        <td mat-cell *matCellDef="let element" > {{element.dateCreation}} </td>
+      </ng-container>
+      <ng-container matColumnDef="budget">
+            <th mat-header-cell *matHeaderCellDef> {{columnsNames[2]}} </th>
+            <td mat-cell *matCellDef="let element" > {{element.budget}} </td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> {{columnsNames[3]}} </th>
+                <td mat-cell *matCellDef="let element" > {{element.total}} </td>
+              </ng-container>
+        <ng-container matColumnDef="fundersNmb">
+            <th mat-header-cell *matHeaderCellDef> {{columnsNames[4]}} </th>
+            <td mat-cell *matCellDef="let element" > {{element.fundersNmb}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Delete">
+                    <th mat-header-cell *matHeaderCellDef> {{columnsNames[5]}} </th>
+                    <td mat-cell *matCellDef="let element" >  <button color="warn" (click)="delete(element.id)" mat-icon-button >
+                        <mat-icon>delete_outline</mat-icon></button></td>
+             </ng-container>
+ 
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <!-- <div class="example-element-diagram">
+        
+          <div class="example-element-symbol"> {{element.total}} </div>
+          <div class="example-element-name"> {{element.titre}} </div>
+          <div class="example-element-weight"> {{element.budget}} </div>
+          <div class="example-element-weight"> {{element.dateCreation}} </div>
+        </div> -->
+        <div class="example-element-description">
+          <p>Description : {{element.description}}</p>
+          
+        </div>
+        <div class="example-element-description">
+                <p>Story : {{element.story}}</p>
+              </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+
+</div>

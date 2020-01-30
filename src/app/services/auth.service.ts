@@ -94,7 +94,7 @@ export class AuthService  {
   }
 
   isConnecte():boolean{
-    if(this.jwt!=undefined){
+     if(this.jwt!=undefined){ 
       return true;
     } else {
       return false;

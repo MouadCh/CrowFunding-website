@@ -57,5 +57,15 @@ export class NavbarComponent implements OnInit {
     this.authService.reset();
 
   }
+  myprojects(){
+    
+    if (this.authService.isConnecte()) {
+      console.log(this.authService.isConnecte());
+    this.router.navigate(['myProjects']);
+    } else {
+      this.auth();
+    }
+  }
+ 
 
 }

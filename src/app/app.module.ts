@@ -42,13 +42,15 @@ import { DatePipe } from '@angular/common';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import {MatInputModule} from '@angular/material/input';
 //import {MatDialog,MatDialogConfig} from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes: Routes = [
   {path:'authentification',component: AuthentificationComponent},
   {path: 'inscription',component: InscriptionComponent},
   {path: '',component: AuthentificationComponent},
   {path: 'profil',component: MyProfilComponent},
-  {path: 'addProject',component: ProjectFormComponent}
+  {path: 'addProject',component: ProjectFormComponent},
+  {path: 'myProjects',component: MyProjectsComponent}
 ];
 @NgModule({
   declarations: [
@@ -89,6 +91,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatTableModule,
     //MatDialog,
     //MatDialogConfig,
     MatDialogModule,

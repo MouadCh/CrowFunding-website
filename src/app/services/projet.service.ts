@@ -33,4 +33,13 @@ export class ProjetService {
     return this.http.post(this.mainUrl+"projet",formData, { headers: headers });
   } 
 
+  userProjects(id: string):Observable<any>{
+    return this.http.get(this.mainUrl+"userProjects?id="+id);
+  }
+  deleteProject(id: string){
+    this.http.delete(this.mainUrl+"projet?id="+id).subscribe((res)=>{
+      console.log(res);
+    });
+  }
+
 }
