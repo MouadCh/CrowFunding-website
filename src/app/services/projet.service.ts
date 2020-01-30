@@ -19,11 +19,15 @@ export class ProjetService {
   }
 
   getMostDonatedProjects(){
-    return this.http.get(this.mainUrl+"projetMostVisited");
+    return this.http.get(this.mainUrl+"projetMostDonated");
   }
 
   getAlmostTheGoalProjects(){
     return this.http.get(this.mainUrl+"projetAlmost");
+  }
+
+  getMostVisited(){
+    return this.http.get(this.mainUrl+"projetMostVisited");
   }
 
   addProject(formData: FormData):Observable<any>{
