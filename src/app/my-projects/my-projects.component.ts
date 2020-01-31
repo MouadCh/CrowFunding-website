@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { setTimeout } from 'timers';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-projects',
@@ -26,7 +27,8 @@ export class MyProjectsComponent implements OnInit {
     columnsToDisplay = ['titre','dateCreation', 'budget', 'total', 'fundersNmb','Delete']; 
 
   expandedElement: PeriodicElement | null;
-  constructor(private projetService: ProjetService, private authService: AuthService, private datepipe: DatePipe) { }
+  constructor(private projetService: ProjetService, private authService: AuthService,
+     private datepipe: DatePipe, private router: Router) { }
 
   ngOnInit() {
 
@@ -53,6 +55,8 @@ export class MyProjectsComponent implements OnInit {
   delete(id: string){
     console.log("id"+id);
     this.projetService.deleteProject(id);
+    window.location.href = "http://localhost:4200/myProjects";
+
   }
 
 }

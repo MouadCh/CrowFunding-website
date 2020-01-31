@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { IndexService } from '../services/index.service';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-project-form',
@@ -77,11 +78,14 @@ export class ProjectFormComponent implements OnInit {
     formData.append('tags', concatenation);
     /* formData.append('id', this.authService.user.id); */
     formData.append('id', sessionStorage.getItem('id'));
+    console.log(sessionStorage.getItem('id'));
     this.projectService.addProject(formData).subscribe((res) => {
       console.log(res);
     });
-    this.dialog.closeAll();
-    window.location.href = "http://localhost:4200/Home";
+    setTimeout(() => {
+      this.dialog.closeAll();
+      window.location.href = "http://localhost:4200/Home";
+    }, 1000);
 
   }
 

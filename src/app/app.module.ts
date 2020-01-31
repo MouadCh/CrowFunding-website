@@ -53,7 +53,7 @@ const appRoutes: Routes = [
   {path: 'profil',component: MyProfilComponent},
   {path: 'addProject',component: ProjectFormComponent},
   {path: 'myProjects',component: MyProjectsComponent},
-  {path: 'test',component: AppComponent}
+  
 ];
 @NgModule({
   declarations: [
