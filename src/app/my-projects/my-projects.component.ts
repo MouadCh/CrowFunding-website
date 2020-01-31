@@ -30,7 +30,8 @@ export class MyProjectsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.obs = this.projetService.userProjects(this.authService.user.id);
+   /*  this.obs = this.projetService.userProjects(this.authService.user.id); */
+   this.obs = this.projetService.userProjects(sessionStorage.getItem('id'));
     this.obs.subscribe((res)=>{
      console.log(res);
      

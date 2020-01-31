@@ -36,11 +36,12 @@ export class ProfilService {
 
   getCarte(idCarte: string):Observable<any>{
     
-    let str: string = this.authService.jwt;
-    let head: string = 'Bearer '+str['jwt']
+    /* let str: string = this.authService.jwt; */
+    let str: string = sessionStorage.getItem('jwt');
+    let head: string = 'Bearer '+str
     console.log(head);
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer '+str['jwt']
+      'Authorization': 'Bearer '+str
 
     });
     

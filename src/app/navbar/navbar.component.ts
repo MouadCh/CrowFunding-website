@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit {
   }
   logOut() {
     this.authService.reset();
+    window.location.href = "http://localhost:4200/Home";
 
   }
   myprojects(){

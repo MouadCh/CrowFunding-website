@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { InscriptionService } from '../services/inscription.service';
 import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-my-profil',
@@ -43,17 +44,19 @@ export class MyProfilComponent implements OnInit {
     private id:string; */
     
   constructor(private formBuilder: FormBuilder,private profilService:ProfilService,
-              private authService: AuthService, private datepipe: DatePipe) {}
+              private authService: AuthService, private datepipe: DatePipe, private dialog: MatDialog) {}
 
   
   ngOnInit() {
 
-    this.profilService.getImage(Number.parseInt(this.authService.user.id)).subscribe((res)=>{
+   /*  this.profilService.getImage(Number.parseInt(this.authService.user.id)).subscribe((res)=>{ */
+    this.profilService.getImage(Number.parseInt(sessionStorage.getItem('id'))).subscribe((res)=>{
       this.image = res;
       this.imageUrl = this.image;
       console.log(this.imageUrl);
     });
-    this.profilService.getCarte(this.authService.user.idCart).subscribe((res)=>{
+    /* this.profilService.getCarte(this.authService.user.idCart).subscribe((res)=>{ */
+      this.profilService.getCarte(sessionStorage.getItem('idCarte')).subscribe((res)=>{
       console.log(res);
       this.carte.numeroCarte = res['numeroCarte'];
       this.carte.dateExp = this.datepipe.transform(res['dateExp'], 'yyyy-MM-dd');
@@ -68,12 +71,19 @@ export class MyProfilComponent implements OnInit {
   ngForm() {
     this.formGroup = this.formBuilder.group({
     
-      nom: [this.authService.user.nom, Validators.required],
+    /*   nom: [this.authService.user.nom, Validators.required],
       prenom: [this.authService.user.prenom, Validators.required],
       userName: [this.authService.user.userName, Validators.required],
       email: new FormControl(this.authService.user.email, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
       password: [this.authService.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
-   
+    */
+
+   nom: [sessionStorage.getItem('nom'), Validators.required],
+   prenom: [sessionStorage.getItem('prenom'), Validators.required],
+   userName: [sessionStorage.getItem('userName'), Validators.required],
+   email: new FormControl(sessionStorage.getItem('email'), Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+   password: [sessionStorage.getItem('password'), Validators.compose([Validators.required, Validators.minLength(8)])],
+
       numeroCarte: ['', Validators.required],
       dateExp: ['', Validators.required],
       proprietaire: ['', Validators.required]
@@ -94,20 +104,25 @@ export class MyProfilComponent implements OnInit {
   }
    modifier(){
     console.log(this.formGroup.value);
-    this.authService.user.userName = this.formGroup.value.userName;
+    /* this.authService.user.userName = this.formGroup.value.userName;
     this.authService.user.password = this.formGroup.value.password;
     this.authService.user.nom = this.formGroup.value.nom;
     this.authService.user.prenom = this.formGroup.value.prenom;
-    this.authService.user.email = this.formGroup.value.email;
+    this.authService.user.email = this.formGroup.value.email; */
+    sessionStorage.setItem('userName',this.formGroup.value.userName);
+    sessionStorage.setItem('password',this.formGroup.value.password);
+    sessionStorage.setItem('nom',this.formGroup.value.nom);
+    sessionStorage.setItem('prenom',this.formGroup.value.prenom);
+    sessionStorage.setItem('email',this.formGroup.value.email);
 
     this.userProfil.nom = this.formGroup.value.nom;
     this.userProfil.prenom = this.formGroup.value.prenom;
     this.userProfil.userName = this.formGroup.value.userName;
     this.userProfil.email = this.formGroup.value.email;
     this.userProfil.password = this.formGroup.value.password;
-    this.userProfil.id = this.authService.user.id;
+    this.userProfil.id = sessionStorage.getItem('id');
 
-    this.carte.id = this.authService.user.idCart;
+    this.carte.id = sessionStorage.getItem('idCarte');
     /* this.carte.dateExp = this.formGroup.value.dateExp;
     this.carte.numeroCarte = this.formGroup.value.numeroCarte;
     this.carte.proprietaire = this.formGroup.value.proprietaire; */
@@ -123,6 +138,7 @@ export class MyProfilComponent implements OnInit {
     
     console.log("carte : "+this.carte);
     console.log("carte : "+this.userProfil);
+    this.dialog.closeAll();
     
   } 
 
