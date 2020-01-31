@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class IndexService {
-  mainUrl:String = "http://localhost:8080/";
+  mainUrl:String = "http://192.168.1.107:8080/";
 
   // activePage:String="home";
   // activeProduct:String="d";
