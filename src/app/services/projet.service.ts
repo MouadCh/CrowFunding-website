@@ -14,6 +14,7 @@ export class ProjetService {
   cardsType = [];
   projetsType="All";
 
+
   constructor(private http: HttpClient , private indexService : IndexService) { 
     this.mainUrl = this.indexService.mainUrl;
   }

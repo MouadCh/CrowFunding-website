@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IndexService } from '../services/index.service';
 import { ProjetService } from '../services/projet.service';
+import { strictEqual } from 'assert';
 
 @Component({
   selector: 'app-mostdonated-slider',
@@ -12,7 +13,6 @@ export class MostdonatedSliderComponent implements OnInit {
   // cards:any[];
   slides: any = [[]];
   cards = [];
-
 
   constructor(private indexService:IndexService, private projetService:ProjetService) { }
 

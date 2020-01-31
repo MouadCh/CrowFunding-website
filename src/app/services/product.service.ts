@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Comment } from '../models/comment.model';
 import { IndexService } from './index.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommentService } from './comment.service';
 
@@ -79,6 +79,15 @@ export class ProductService {
       }
     }, err=>{
       this.router.navigateByUrl("Home");
+    });
+  }
+
+  AddViewsToPtojet(id){
+
+    const  params = new  HttpParams().set('str', id+"")
+
+    this.http.get(this.mainUrl+"projetAddView",{params}).subscribe(data =>{
+      console.log("Done +1");
     });
   }
 

@@ -18,6 +18,9 @@ export class ProductComponent implements OnInit {
     var id =  parseInt(txt.match(/\d/g)+"");
     console.log(id); 
 
+    //Add View to projet
+    this.productService.AddViewsToPtojet(id);
+
     //Get product(id) from BDD 
     this.productService.getProductId(id);
   }

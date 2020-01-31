@@ -55,14 +55,14 @@
                     <span class="goal-label">Funded</span>
                   </div>
                   <div class="goal-stat">
-                    <span class="goal-number">${{productService.raised |  number: '1.2-2'}}</span>
+                    <span class="goal-number">${{productService.raised |  number: '1.2-2' }}</span>
                     <span class="goal-label">Raised</span>
                   </div>
                   <div class="goal-stat">
                     <span class="goal-number">
                       <div id="countdown"></div>
                     </span>
-                    <span class="goal-number"> {{ productService.date_diff }}</span>
+                    <span class="goal-number"> {{ productService.date_diff | number: '1.0-0'}}</span>
                     <span class="goal-label">  Days to Go</span>
                   </div>
                 </div>
