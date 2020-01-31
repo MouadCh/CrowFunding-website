@@ -1,53 +1,107 @@
-<div class="row">
-
-    <mdb-carousel  [isControls]="true" class="carousel-multi-item multi-animation" data-interval="false"
-        [animation]="'slide'" style=" min-width: 1140px ;">
-        <mdb-carousel-item  *ngFor="let item of slides; let i = index">
-            <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}"
-                *ngFor="let card of item; let cardIndex = index">
-                <mdb-card style="height: 400px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
-                     <!-- <img [src]="card.img"> -->
-                     <img style="height: 180px;" src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                     <mdb-card-body>
-                        <mdb-card-title>
-                            <h4>{{card.titre}}</h4>
-                        </mdb-card-title>
-                        <!-- <p>{{card.description}}</p> -->
-
-
-                        <button class="share" mat-mini-fab color="primary">
-                            <mat-icon>share</mat-icon>
-                        </button>
-                        <hr>
-                        <div class="info">
-                            <ul class="list-unstyled list-inline font-small">
-                                <li class="list-inline-item pr-2 ">
-                                    <div class="mdl-card__supporting-text">
-                                        <i class="material-icons">access_time</i>
-                                        {{ card.dateLimite | date: 'd/MM/y'}}
-                                        <!-- date de fin de donation  -->
-                                    </div>
-                                </li>
-                                <li class="list-inline-item pr-2 ">
-                                    <div class="mdl-card__supporting-text">
-                                        {{card.budget}}
-                                        <!-- date de fin de donation  -->
-                                        <i class="material-icons">attach_money</i>
-                                    </div>
-                                </li>
-                                <li class="list-inline-item pr-2 ">
-                                    <div class="mdl-card__supporting-text">
-                                        {{card.nbrVues}}
-                                        <!-- date de fin de donation  -->
-                                        <i class="material-icons">visibility</i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </mdb-card-body>
-                </mdb-card>
-            </div>
-        </mdb-carousel-item>
-    </mdb-carousel>
-    <!-- <button (click)="onclick()">test</button> -->
+<div *ngIf="indexService.searchText == '' ">
+    <div class="row">
+        <mdb-carousel  [isControls]="true" class="carousel-multi-item multi-animation" data-interval="false"
+            [animation]="'slide'" style=" min-width: 1140px ;">
+            <mdb-carousel-item  *ngFor="let item of slides; let i = index">
+                <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}"
+                    *ngFor="let card of item; let cardIndex = index">
+                    <mdb-card style="height: 380px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
+                         <!-- <img [src]="card.img"> -->
+                         <img style="height: 180px;" src="https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                         <mdb-card-body>
+                            <mdb-card-title>
+                                <h4>{{card.titre}}</h4>
+                            </mdb-card-title>
+                            <!-- <p>{{card.description}}</p> -->
+                            <button class="share" mat-mini-fab color="primary">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                            <hr>
+                            <div class="info">
+                                <ul class="list-unstyled list-inline font-small">
+                                    <li class="list-inline-item pr-2 ">
+                                        <div class="mdl-card__supporting-text">
+                                            <i class="material-icons">access_time</i>
+                                            {{ card.dateLimite | date: 'd/MM/y'}}
+                                            <!-- date de fin de donation  -->
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item pr-2 ">
+                                        <div class="mdl-card__supporting-text">
+                                            {{ card.budget}}
+                                            <!-- date de fin de donation  -->
+                                            <i class="material-icons">attach_money</i>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item pr-2 ">
+                                        <div class="mdl-card__supporting-text">
+                                            {{ card.nbrVues}}
+                                            <!-- date de fin de donation  -->
+                                            <i class="material-icons">visibility</i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+            </mdb-carousel-item>
+        </mdb-carousel>
+    </div>
 </div>
+
+<div *ngIf="indexService.searchText != '' ">
+    <div class="row">
+        <mdb-carousel  [isControls]="true" class="carousel-multi-item multi-animation" data-interval="false"
+            [animation]="'slide'" style=" min-width: 1140px ;">
+            <mdb-carousel-item  *ngFor="let item of slides; let i = index">
+                <div *ngFor="let card of item; let cardIndex = index" >
+                    <div *ngIf=" card.titre.toLowerCase().includes(this.indexService.searchText) ">
+                        <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}" >
+                            <mdb-card style="height: 380px; min-width: 255px" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
+                                <!-- <img [src]="card.img"> -->
+                                <img style="height: 180px;" src="https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                                <mdb-card-body>
+                                <mdb-card-title>
+                                    <h4>{{card.titre}}</h4>
+                                </mdb-card-title>
+                                <!-- <p>{{card.description}}</p> -->
+                                <button class="share" mat-mini-fab color="primary">
+                                    <mat-icon>share</mat-icon>
+                                </button>
+                                <hr>
+                                <div class="info">
+                                    <ul class="list-unstyled list-inline font-small">
+                                        <li class="list-inline-item pr-2 ">
+                                            <div class="mdl-card__supporting-text">
+                                                <i class="material-icons">access_time</i>
+                                                {{ card.dateLimite | date: 'd/MM/y'}}
+                                                <!-- date de fin de donation  -->
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item pr-2 ">
+                                            <div class="mdl-card__supporting-text">
+                                                {{ card.budget}}
+                                                <!-- date de fin de donation  -->
+                                                <i class="material-icons">attach_money</i>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item pr-2 ">
+                                            <div class="mdl-card__supporting-text">
+                                                {{ card.nbrVues}}
+                                                <!-- date de fin de donation  -->
+                                                <i class="material-icons">visibility</i>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </mdb-card-body>
+                        </mdb-card>
+                        </div>
+                    </div>
+                </div>
+            </mdb-carousel-item>
+        </mdb-carousel>
+    </div>
+</div>
+

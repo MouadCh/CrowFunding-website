@@ -19,6 +19,8 @@ import { ProjetService } from '../services/projet.service';
 
 
 export class NavbarComponent implements OnInit {
+
+
   constructor(private navBarService: NavbarService, private indexService: IndexService,
     private router: Router, private dialog: MatDialog, private authService: AuthService, private projetService : ProjetService) {
   }

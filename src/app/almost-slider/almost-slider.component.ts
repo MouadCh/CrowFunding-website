@@ -19,7 +19,6 @@ export class AlmostSliderComponent implements OnInit {
     this.projetService.getAlmostTheGoalProjects().subscribe( (data:any[])=>{
       this.cards=data;
       this.slides = this.chunk(this.cards, 4);
-      console.log("almost ");
       console.log(data);
 
     });
@@ -33,6 +32,9 @@ export class AlmostSliderComponent implements OnInit {
     return R;
   }
 
-
+  check(titre:String){
+    console.log("Check");
+    // titre.toLowerCase().includes(this.indexService.searchText); 
+  }
 
 }

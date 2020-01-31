@@ -8,8 +8,8 @@ import { AuthService } from './auth.service';
 export class IndexService {
   mainUrl:String = "http://192.168.1.107:8080/";
 
-  // activePage:String="home";
-  // activeProduct:String="d";
+  searchText:string="";
+
 
   
 
