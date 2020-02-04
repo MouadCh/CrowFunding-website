@@ -2,8 +2,58 @@
         <h3>Profil</h3>
       
         <form [formGroup]="formGroup">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <img [src]="imageUrl">
+                        <button type="button" class="share" mat-mini-fab color="primary"
+                          onclick="document.getElementById('getFile').click()">
+                          <mat-icon>add_a_photo</mat-icon>
+                        </button>
+                        <input type='file' id="getFile" style="display:none" (change)="onImageSelected($event)">
+                      </div>
+                    <mat-form-field class="example-form example-full-width">
+                        <input matInput placeholder="Your Name" formControlName="nom">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input matInput placeholder="Your Last name" formControlName="prenom">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input matInput placeholder="Your User name" formControlName="userName">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input matInput placeholder="Your Email" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input type="password" matInput placeholder="Your Password" formControlName="password">
+                    </mat-form-field>
+                   
+                </div>
+                <div class="col-md-6 test">
+                 
+                      <p class="h4 mb-4 text-center">Carte informations</p>
+                    <mat-form-field class="example-form example-full-width">
+                        <input type="date" matInput placeholder="Expiration date"  [(ngModel)]="this.carte.dateExp"
+                         formControlName="dateExp">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input type="number" matInput placeholder="Carte number" [(ngModel)]="this.carte.numeroCarte"
+                         formControlName="numeroCarte">
+                    </mat-form-field>
+                    <mat-form-field class="example-form example-full-width">
+                        <input  matInput placeholder="Carte owner" formControlName="proprietaire"
+                         [(ngModel)]="this.carte.proprietaire">
+                    </mat-form-field>
+                    <button  type="submit"  [disabled]="!formGroup.valid" (click)="modifier()" class="example-full-width addImage "
+                    mat-raised-button color="primary">Validate</button>
+                  
+                  </div>
+              </div>
+
+
           
-          <div class="form-group">
+  <!--         <div class="form-group">
               <img [src]="imageUrl">
               <button type="button" class="share" mat-mini-fab color="primary"
                 onclick="document.getElementById('getFile').click()">
@@ -51,6 +101,6 @@
           </div>
           
       
-          <button type="submit"  (click)="modifier()" class="btn btn-primary mb-2">Validate</button>
+          <button type="submit"  (click)="modifier()" class="btn btn-primary mb-2">Validate</button> -->
         </form>
       </div>
