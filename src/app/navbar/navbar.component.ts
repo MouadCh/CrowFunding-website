@@ -74,18 +74,26 @@ export class NavbarComponent implements OnInit {
     this.projetService.projetsType = "All" ;
   }
   Education(){
+    window.scroll(0,1100);
+
     this.projetService.projetsType = "Education" ;
     this.projetService.getEducationProjet();
   }
   Science(){
+    window.scroll(0,1100);
+
     this.projetService.projetsType = "Science" ;
     this.projetService.getScienceProjet();
   }
   Water(){
+    window.scroll(0,1100);
+
     this.projetService.projetsType = "Water" ;
     this.projetService.getWaterProjet();
   }
   Art(){
+    window.scroll(0,1100);
+
     this.projetService.projetsType = "Art" ;
     this.projetService.getArtProjet();
   }

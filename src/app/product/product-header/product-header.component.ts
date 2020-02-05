@@ -50,6 +50,7 @@ export class ProductHeaderComponent implements OnInit {
       } else {
         this.auth();
       }
+      
     }
     auth() {
 
