@@ -12,7 +12,6 @@ export class AuthService  {
 
   userImage:String; 
 
-  /* jwt:any; */
    userAuth = {
     userName:'',
     password:''
@@ -90,6 +89,7 @@ export class AuthService  {
      //this.user.imageUrl = res['imageUrl'];
      this.user.role = res['role'];  */
      ////////////////////////////////////////////////////////////
+
         sessionStorage.setItem('id', res['id']);
         sessionStorage.setItem('nom', res['nom']);
         sessionStorage.setItem('prenom', res['prenom']);
