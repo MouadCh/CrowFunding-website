@@ -37,7 +37,7 @@ export class ProductHeaderComponent implements OnInit {
     }
 
     Donate(){
-      console.log("Donate");
+      
     }
 
     diffDays:number;
