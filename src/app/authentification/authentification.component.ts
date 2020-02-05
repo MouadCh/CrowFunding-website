@@ -53,7 +53,6 @@ export class AuthentificationComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    dialogConfig.height = "100%";
     this.dialog.open(InscriptionComponent,dialogConfig);
   }
 
