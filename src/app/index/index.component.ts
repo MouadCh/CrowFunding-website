@@ -11,6 +11,7 @@ import { IndexService } from '../services/index.service';
 })
 export class IndexComponent implements OnInit {
 
+
   constructor(private navBarService :NavbarService, private indexService:IndexService) { }
 
   ngOnInit() {

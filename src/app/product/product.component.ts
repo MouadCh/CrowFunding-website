@@ -15,7 +15,7 @@ export class ProductComponent implements OnInit {
 
     //Get id from url
     var txt = this.router.url;
-    var id =  parseInt(txt.match(/\d/g)+"");
+    var id =  parseInt(txt.match(/\d+/g)+"");
     console.log(id); 
 
     //Add View to projet
