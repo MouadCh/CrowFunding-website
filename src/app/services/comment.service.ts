@@ -68,6 +68,7 @@ export class CommentService {
         this.commentsImage.forEach( (el:any) => {
             this.http.get(this.mainUrl+"userImage?id="+el.id , {responseType : 'text'}).subscribe( (data:any) =>{
               el.img = data;
+              // console.log("data"+data);
               console.log("Id: "+el.id+" Img: "+el.img);
             }, err =>{
               console.log("not Found ");

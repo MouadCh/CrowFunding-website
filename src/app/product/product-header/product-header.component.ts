@@ -13,7 +13,6 @@ export class ProductHeaderComponent implements OnInit {
 
     constructor(private productService : ProductService, private indexService:IndexService) { 
       console.log("Ddddd",this.productService.date);
-
     }
 
     timeLeft: number = 60;

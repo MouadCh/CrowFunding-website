@@ -23,6 +23,11 @@ export class ProductComponent implements OnInit {
 
     //Get product(id) from BDD 
     this.productService.getProductId(id);
+
+    //Get product Images from BDD 
+    this.productService.GetProductImages(id);
+
+
   }
 
 }

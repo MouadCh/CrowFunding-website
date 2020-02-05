@@ -58,6 +58,7 @@ export class InscriptionComponent implements OnInit {
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
+      console.log("MMMMM"+event);
     }
     reader.readAsDataURL(file);
   }
