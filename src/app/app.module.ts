@@ -45,7 +45,8 @@ import { MostvisitedSliderComponent } from './mostvisited-slider/mostvisited-sli
 import { TypeSliderComponent } from './type-slider/type-slider.component';
 //import {MatDialog,MatDialogConfig} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
-
+import { DonateComponent } from './donate/donate.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 const appRoutes: Routes = [
   {path:'authentification',component: AuthentificationComponent},
   {path: 'inscription',component: InscriptionComponent},
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
   {path: 'profil',component: MyProfilComponent},
   {path: 'addProject',component: ProjectFormComponent},
   {path: 'myProjects',component: MyProjectsComponent},
-  
+  {path: 'donate',component: DonateComponent}
 ];
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
     ProjectFormComponent,
     MostvisitedSliderComponent,
     TypeSliderComponent,
+    DonateComponent,
     
   ],
   imports: [
@@ -97,6 +99,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatInputModule,
     MatTableModule,
+    MatCheckboxModule,
     //MatDialog,
     //MatDialogConfig,
     MatDialogModule,

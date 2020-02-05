@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = "40%";
     this.dialog.open(AuthentificationComponent, dialogConfig);
 
   }

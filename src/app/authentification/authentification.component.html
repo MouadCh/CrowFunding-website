@@ -1,27 +1,28 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-    <h2 class="active"> Sign In </h2>
+
+  <div class="test">
+        <!-- Tabs Titles -->
+      <h2 class="active test"> Sign In </h2>
+
   
 
-    <!-- Icon -->
-    <div class="fadeIn first ">
-      <i class="material-icons " style="font-size: 55px">account_circle</i>
+      <!-- Icon -->
+      <div class="fadeIn first test ">
+        <i class="material-icons " style="font-size: 55px">account_circle</i>
+      </div>
     </div>
+      <!-- Login Form -->
+      <form class="tt" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <input type="text" id="login" class="fadeIn second "  placeholder="User Name" formControlName="userName">
+        <input type="password" id="password" class="fadeIn third "  placeholder="password" formControlName="password">
+        <input style="margin-left: 90px" type="submit" class="fadeIn fourth " [disabled]="!formGroup.valid" value="LogIn">
+        <p class="valide" *ngIf="this.valide">Invalid informations</p>
+      </form>
 
-    <!-- Login Form -->
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-      <input type="text" id="login" class="fadeIn second"  placeholder="User Name" formControlName="userName">
-      <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="password">
-      <input type="submit" class="fadeIn fourth" [disabled]="!formGroup.valid" value="LogIn">
-      <p class="valide" *ngIf="this.valide">Invalid informations</p>
-    </form>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover"style="color:white" (click)="oncreate()" >SIGN UP</a>
+      </div>
 
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" (click)="oncreate()" >SIGN UP</a>
-    </div>
 
-  </div>
-</div>
 
+  

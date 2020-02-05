@@ -3,6 +3,10 @@ import { ProductService } from 'src/app/services/product.service';
 import { IndexService } from 'src/app/services/index.service';
 import { animate } from '@angular/animations';
 import { timer } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { DonateComponent } from 'src/app/donate/donate.component';
+import { AuthentificationComponent } from 'src/app/authentification/authentification.component';
 
 @Component({
   selector: 'app-product-header',
@@ -11,7 +15,8 @@ import { timer } from 'rxjs';
 })
 export class ProductHeaderComponent implements OnInit {
 
-    constructor(private productService : ProductService, private indexService:IndexService) { 
+    constructor(private productService : ProductService, private indexService:IndexService, 
+      private authService: AuthService, private dialog: MatDialog) { 
       console.log("Ddddd",this.productService.date);
     }
 
@@ -37,9 +42,23 @@ export class ProductHeaderComponent implements OnInit {
     }
 
     Donate(){
-      console.log("Donate");
+      if (this.authService.isConnecte()) {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "60%";
+        this.dialog.open(DonateComponent, dialogConfig);
+      } else {
+        this.auth();
+      }
     }
+    auth() {
 
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "60%";
+      this.dialog.open(AuthentificationComponent, dialogConfig);
+  
+    }
     diffDays:number;
     calculateDiff(){
       // var date1:any = new Date(this.productService.date_limite) ;

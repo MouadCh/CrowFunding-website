@@ -1,0 +1,20 @@
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  .addImage{
+    margin-bottom: 15px;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .button{
+    background: #009E74;
+  }
