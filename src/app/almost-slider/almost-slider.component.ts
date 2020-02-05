@@ -19,7 +19,7 @@ export class AlmostSliderComponent implements OnInit {
     this.projetService.getAlmostTheGoalProjects().subscribe( (data:any[])=>{
       this.cards=data;
       this.slides = this.chunk(this.cards, 4);
-      console.log(data);
+      console.log(this.cards[0]["image"]);
 
     });
   }

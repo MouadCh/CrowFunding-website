@@ -7,7 +7,7 @@
                     *ngFor="let card of item; let cardIndex = index">
                     <mdb-card style="height: 380px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
                          <!-- <img [src]="card.img"> -->
-                         <img style="height: 180px;" src="https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                         <img style="height: 180px;" [src]="card.image">
                          <mdb-card-body>
                             <mdb-card-title>
                                 <h4>{{card.titre}}</h4>
