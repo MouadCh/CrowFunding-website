@@ -45,7 +45,7 @@ export class ProductHeaderComponent implements OnInit {
       if (this.authService.isConnecte()) {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "60%";
+        dialogConfig.width = "50%";
         this.dialog.open(DonateComponent, dialogConfig);
       } else {
         this.auth();
@@ -56,7 +56,7 @@ export class ProductHeaderComponent implements OnInit {
 
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
-      dialogConfig.width = "60%";
+      dialogConfig.width = "40%";
       this.dialog.open(AuthentificationComponent, dialogConfig);
   
     }

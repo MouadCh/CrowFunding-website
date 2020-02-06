@@ -16,8 +16,7 @@ export class AuthentificationComponent implements OnInit {
 
   private formGroup: FormGroup;
   private valide: boolean =false;
-  constructor(private formBuilder:FormBuilder, private dialog: MatDialog,
-             private authService: AuthService) { }
+  constructor(private formBuilder:FormBuilder, private dialog: MatDialog,private authService: AuthService) { }
   
 
   ngOnInit() {
@@ -28,7 +27,6 @@ export class AuthentificationComponent implements OnInit {
       userName: ['',Validators.required],
       password: ['',Validators.required]
     });
-
   }
   onSubmit(){
     this.authService.setUser(this.formGroup.value.userName, this.formGroup.value.password);
