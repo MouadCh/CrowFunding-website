@@ -1,11 +1,11 @@
 <div *ngIf="indexService.searchText == '' ">
     <div class="row">
-        <mdb-carousel  [isControls]="true" class="carousel-multi-item multi-animation" data-interval="false"
-            [animation]="'slide'" style=" min-width: 1140px ;">
+        <mdb-carousel  [isControls]="true" class="carousel-multi-item multi-animation " data-interval="true"
+            [animation]="'slide'" style=" min-width: 1140px ; background-color: #DDFFE7;">
             <mdb-carousel-item  *ngFor="let item of slides; let i = index">
                 <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}"
                     *ngFor="let card of item; let cardIndex = index">
-                    <mdb-card style="height: 380px;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
+                    <mdb-card style="height: 380px; background-color: #C4DBE0;" (click)="indexService.ClickOnProduct(card.id)" class="my-1">
                          <!-- <img [src]="card.img"> -->
                          <img style="height: 180px;" [src]="card.image">
                          <mdb-card-body>
