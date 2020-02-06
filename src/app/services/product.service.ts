@@ -98,4 +98,28 @@ export class ProductService {
     });
   }
 
+
+
+  timeLeft: number = 60;
+  interval;
+
+  //ProgressBar
+  ProgressAutoFill(){
+    setTimeout(() => {
+      var currenttime = 0;
+      this.interval = setInterval(() => {
+        if(currenttime <= this.raised*100/this.budget){
+          document.getElementById("progress").style.width=currenttime+"%";   
+          currenttime= currenttime + 1;
+        }else if(this.raised >= this.budget){
+          document.getElementById("progress").style.backgroundColor="#dcfb7c";   
+          // currenttime= currenttime + 1;
+        }else{
+          clearInterval(this.interval);
+        }     
+      },50);
+
+    }, 1500);
+  }
+
 }

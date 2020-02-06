@@ -20,23 +20,11 @@ export class ProductHeaderComponent implements OnInit {
       console.log("Ddddd",this.productService.date);
     }
 
-    timeLeft: number = 60;
-    interval;
+    
 
     ngOnInit() {
       
-      setTimeout(() => {
-        var currenttime = 0;
-        this.interval = setInterval(() => {
-          if(currenttime <= this.productService.raised*100/this.productService.budget){
-            document.getElementById("progress").style.width=currenttime+"%";   
-            currenttime= currenttime + 1;
-          }else{
-            clearInterval(this.interval);
-          }     
-        },50);
-
-      }, 1500);
+      this.productService.ProgressAutoFill();
 
       this.calculateDiff();
     }
